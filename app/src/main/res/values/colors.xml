@@ -4,10 +4,17 @@
     <color name="color_Uranian_Blue">#BDE0FE</color>
     <color name="color_Unbleached_Silk">#FFCEC0</color>
     <color name="color_Red_Salsa">#FF384D</color>
+    <color name="color_Antique_Brass">#CB997E</color>
     <!-- Defining Secondary colors -->
     <color name="color_Black">#FF000000</color>
+    <color name="color_Silver">#C8C8C8</color>
     <color name="color_White">#FFFFFFFF</color>
     <color name="color_White_Dark">#FFFFFFFF</color>
     <color name="color_White_Light">#FFFFFFFF</color>
+    <color name="color_Beau_Blue">#C9DFF3</color>
+    <color name="color_Blue_Jean">#41A5FC</color>
+    <color name="color_Baby_Blue_Eyes">#9ED1FE</color>
+    <color name="color_transparent">#00FAFAFA</color>
+
 
 </resources>

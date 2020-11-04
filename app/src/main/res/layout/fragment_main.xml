@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_White"
+    tools:context=".ui.fragments.main.MainFragment">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_wave"
+        android:background="@drawable/base_wave_main_blue"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/height_wave"
+        android:background="@drawable/base_wave_main_pink"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/logo_dk_img"
+            android:layout_width="@dimen/size_logo"
+            android:layout_height="@dimen/size_logo"
+            android:layout_marginTop="@dimen/marginTop_logo"
+            android:layout_marginRight="@dimen/marginRight_logo"
+            android:src="@drawable/logo_dk_app"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/app_name"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo_dk_img"
+            style="@style/tittleFragments"/>
+
+        <View
+            android:id="@+id/view_text_support"
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintLeft_toLeftOf="@id/tv_app_name"
+            app:layout_constraintRight_toRightOf="@id/tv_app_name"
+            app:layout_constraintTop_toTopOf="@id/tv_app_name"
+            app:layout_constraintBottom_toBottomOf="@id/tv_app_name"/>
+
+        <TextView
+            android:id="@+id/tv_slogan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="7dp"
+            android:text="@string/slogan"
+            app:layout_constraintLeft_toLeftOf="@id/tv_app_name"
+            app:layout_constraintRight_toRightOf="@id/tv_app_name"
+            app:layout_constraintTop_toBottomOf="@+id/view_text_support"
+            style="@style/slogan"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_main_sign_in"
+            android:layout_marginBottom="45dp"
+            android:text="@string/btn_sign_in_tittle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            style="@style/btnCornerOutline"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_main_sign_up"
+            android:layout_marginBottom="15dp"
+            android:text="@string/btn_sign_up_tittle"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btn_main_sign_in"
+            style="@style/btnCorner"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

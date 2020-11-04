@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">UProject</string>
+    <string name="app_name">Dulcekat</string>
+    <string name="slogan"> ¡Endulza tu día!</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_sign_in_tittle">Inicia sesión</string>
+    <string name="btn_sign_up_tittle">¡Regístrate!</string>
 </resources>
