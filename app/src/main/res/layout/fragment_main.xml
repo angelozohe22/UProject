@@ -8,19 +8,17 @@
     tools:context=".ui.fragments.main.MainFragment">
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_wave"
-        android:background="@drawable/base_wave_main_blue"
+        android:background="@drawable/main_wave_blue"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView2"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_wave"
-        android:background="@drawable/base_wave_main_pink"
+        android:background="@drawable/main_wave_pink"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -47,14 +45,13 @@
 
         <TextView
             android:id="@+id/tv_app_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
             android:text="@string/app_name"
+            android:layout_marginTop="12dp"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/logo_dk_img"
-            style="@style/tittleFragments"/>
+            style="@style/tittleFragments"
+            />
 
         <View
             android:id="@+id/view_text_support"
@@ -78,22 +75,24 @@
             style="@style/slogan"/>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_main_sign_in"
-            android:layout_marginBottom="45dp"
-            android:text="@string/btn_sign_in_tittle"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            style="@style/btnCornerOutline"/>
-
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_main_sign_up"
-            android:layout_marginBottom="15dp"
+            android:layout_marginTop="50dp"
             android:text="@string/btn_sign_up_tittle"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/btn_main_sign_in"
+            app:layout_constraintTop_toBottomOf="@id/tv_slogan"
             style="@style/btnCorner"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_main_sign_in"
+            style="@style/btnCornerOutline"
+            android:layout_marginTop="15dp"
+            android:text="@string/btn_sign_in_tittle"
+            app:layout_constraintLeft_toLeftOf="@id/btn_main_sign_up"
+            app:layout_constraintRight_toRightOf="@id/btn_main_sign_up"
+            app:layout_constraintTop_toBottomOf="@id/btn_main_sign_up" />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

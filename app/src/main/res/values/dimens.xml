@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="height_wave">200dp</dimen>
+    <dimen name="height_wave_blue_sign_up">182dp</dimen>
     <dimen name="size_logo">180dp</dimen>
     <dimen name="marginTop_logo">180dp</dimen>
     <dimen name="marginRight_logo">7dp</dimen>

@@ -5,9 +5,8 @@ import android.os.Build
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import com.example.uproject.R
 
-fun Fragment.setStatusBarColor(color: Int = transformColor(R.color.color_Uranian_Blue)) {
+fun Fragment.setStatusBarColor(color: Int = Color.WHITE) {
     val window = this.requireActivity().window
     val customColor = transformColor(color)
     if (Build.VERSION.SDK_INT >= 21) {
@@ -17,7 +16,7 @@ fun Fragment.setStatusBarColor(color: Int = transformColor(R.color.color_Uranian
     }
 }
 
-fun Fragment.setNavigationBarColor(color: Int = transformColor(R.color.color_Unbleached_Silk)) {
+fun Fragment.setNavigationBarColor(color: Int = Color.WHITE) {
     val window = this.requireActivity().window
     val customColor = transformColor(color)
     if (Build.VERSION.SDK_INT >= 21) {

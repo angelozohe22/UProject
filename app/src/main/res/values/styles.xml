@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="tittleFragments">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/grandhotel_regular</item>
         <item name="android:textColor">@color/color_Red_Salsa</item>
         <item name="android:textSize">@dimen/size_tittle_fragments</item>
