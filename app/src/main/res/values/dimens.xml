@@ -7,8 +7,15 @@
     <dimen name="marginRight_logo">7dp</dimen>
     <dimen name="size_tittle_fragments">74sp</dimen>
     <dimen name="size_slogan">36sp</dimen>
+    <dimen name="size_corner_textField">4dp</dimen>
+    <dimen name="margin_left_right_textField">36dp</dimen>
+    <dimen name="marginTop_textField">27dp</dimen>
+    <dimen name="marginTop_Left_arrow_back">16dp</dimen>
+    <dimen name="size_button_arrow_back">50dp</dimen>
     <dimen name="width_button">260dp</dimen>
     <dimen name="height_button">45dp</dimen>
+    <dimen name="width_imgRecoverPass">150dp</dimen>
+    <dimen name="height_imgRecoverPass">150dp</dimen>
     <dimen name="size_text_button">18sp</dimen>
-    <dimen name="elevation_button">4dp</dimen>
+    <dimen name="elevation_button">10dp</dimen>
 </resources>

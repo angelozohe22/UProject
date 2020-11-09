@@ -4,27 +4,156 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/color_White"
     tools:context=".ui.fragments.signup.SignUpFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="0dp"
         android:layout_height="@dimen/height_wave_blue_sign_up"
         android:background="@drawable/sign_up_wave_blue"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="0dp"
         android:layout_height="@dimen/height_wave"
         android:background="@drawable/sign_up_wave_pink"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        />
 
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/btn_back_signUp"
+        android:layout_width="@dimen/size_button_arrow_back"
+        android:layout_height="@dimen/size_button_arrow_back"
+        android:layout_marginLeft="@dimen/marginTop_Left_arrow_back"
+        android:layout_marginTop="@dimen/marginTop_Left_arrow_back"
+        android:background="@drawable/btn_arrow"
+        android:src="@drawable/ic_arrow_back"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_tittle_signUp"
+        android:layout_marginTop="50dp"
+        android:text="@string/tittle_signUp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        style="@style/TittleFragments"
+        />
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_username_signUp"
+        android:layout_marginLeft="@dimen/margin_left_right_textField"
+        android:layout_marginTop="@dimen/marginTop_textField"
+        android:layout_marginRight="@dimen/margin_left_right_textField"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_tittle_signUp"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_username_signUp"
+            android:hint="@string/hint_username"
+            android:inputType="textCapWords"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_surname_signUp"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="@id/cet_username_signUp"
+        app:layout_constraintRight_toRightOf="@id/cet_username_signUp"
+        app:layout_constraintTop_toBottomOf="@id/cet_username_signUp"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_surname_signUp"
+            android:hint="@string/hint_surname"
+            android:inputType="textCapWords"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_phone_signUp"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="@id/cet_surname_signUp"
+        app:layout_constraintRight_toRightOf="@id/cet_surname_signUp"
+        app:layout_constraintTop_toBottomOf="@id/cet_surname_signUp"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_phone_signUp"
+            android:hint="@string/hint_phone"
+            android:inputType="number"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_email_signUp"
+        app:endIconMode="clear_text"
+        app:layout_constraintLeft_toLeftOf="@id/cet_phone_signUp"
+        app:layout_constraintRight_toRightOf="@id/cet_phone_signUp"
+        app:layout_constraintTop_toBottomOf="@id/cet_phone_signUp"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_email_signUp"
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/cet_password_signUp"
+        app:layout_constraintLeft_toLeftOf="@id/cet_email_signUp"
+        app:layout_constraintRight_toRightOf="@id/cet_email_signUp"
+        app:layout_constraintTop_toBottomOf="@id/cet_email_signUp"
+        app:passwordToggleEnabled="true"
+        style="@style/ContentInputEditText"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_password_signUp"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"
+            style="@style/InputEditText"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_register_signUp"
+        android:layout_marginTop="25dp"
+        android:text="@string/btn_sign_up_tittle"
+        app:layout_constraintLeft_toLeftOf="@id/cet_password_signUp"
+        app:layout_constraintRight_toRightOf="@id/cet_password_signUp"
+        app:layout_constraintTop_toBottomOf="@id/cet_password_signUp"
+        style="@style/ButtonCorner"
+        />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/googlesans_regular"
+        android:text="@string/lbl_from_register_to"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_register_signUp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

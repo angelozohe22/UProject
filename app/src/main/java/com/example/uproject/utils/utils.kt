@@ -6,6 +6,8 @@ import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
+var isEnabledasd = false
+
 fun Fragment.setStatusBarColor(color: Int = Color.WHITE) {
     val window = this.requireActivity().window
     val customColor = transformColor(color)

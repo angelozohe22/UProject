@@ -5,4 +5,17 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="btn_sign_in_tittle">Inicia sesión</string>
     <string name="btn_sign_up_tittle">¡Regístrate!</string>
+    <string name="tittle_signUp">Regístrate</string>
+    <string name="hint_username">Nombre completo</string>
+    <string name="hint_surname">Apellidos</string>
+    <string name="hint_phone">Teléfono</string>
+    <string name="hint_email">Correo</string>
+    <string name="hint_password">Contraseña</string>
+    <string name="btn_signIn_tittle">Inicia sesión</string>
+    <string name="lbl_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="lbl_from_register_to">¿Ya tienes una cuenta? Inicia sesión</string>
+    <string name="lbl_from_logIn_to">¿Aún no tienes una cuenta? Registrate aquí!</string>
+    <string name="forgot_password_message">¡No se preocupe! Simplemente complete su correo electrónico y nosotros le enviaremos un enlace para restablecer su contraseña</string>
+    <string name="btn_recoverPass_tittle">Recuperar contraseña</string>
+    <string name="tittle_signIn">Inicia sesión</string>
 </resources>

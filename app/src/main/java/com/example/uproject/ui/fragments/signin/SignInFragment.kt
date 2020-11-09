@@ -6,8 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.uproject.R
+import com.example.uproject.ui.fragments.recoverpassword.RecoverPasswordFragment
+import com.example.uproject.utils.isEnabledasd
 import com.example.uproject.utils.setNavigationBarColor
 import com.example.uproject.utils.setStatusBarColor
+import kotlinx.android.synthetic.main.fragment_sign_in.*
 
 class SignInFragment : Fragment() {
 
@@ -23,6 +26,12 @@ class SignInFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setStatusBarColor(R.color.color_Uranian_Blue)
         setNavigationBarColor(R.color.color_Unbleached_Silk)
+
+        lbl_forgot_password.setOnClickListener {
+            val customDialog = RecoverPasswordFragment()
+            customDialog.show(requireActivity().supportFragmentManager,"RecoverPassword")
+        }
+
     }
 
 }

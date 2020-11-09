@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="tittleFragments">
+    <style name="SplashScreen" parent="Theme.UProject">
+        <item name="colorPrimary">@color/color_White</item>
+        <item name="colorPrimaryVariant">@color/color_White</item>
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="TittleFragments">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:fontFamily">@font/grandhotel_regular</item>
@@ -12,7 +19,7 @@
         <item name="android:shadowRadius">8</item>
     </style>
 
-    <style name="slogan">
+    <style name="Slogan">
         <item name="android:fontFamily">@font/grandhotel_regular</item>
         <item name="android:textColor">@color/color_Antique_Brass</item>
         <item name="android:textSize">@dimen/size_slogan</item>
@@ -21,7 +28,7 @@
         <item name="android:shadowRadius">8</item>
     </style>
 
-    <style name="btnCorner">
+    <style name="ButtonCorner">
         <item name="android:layout_width">@dimen/width_button</item>
         <item name="android:layout_height">@dimen/height_button</item>
         <item name="android:elevation" tools:targetApi="lollipop">@dimen/elevation_button</item>
@@ -33,7 +40,7 @@
         <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="btnCornerOutline">
+    <style name="ButtonCornerOutline">
         <item name="android:layout_width">@dimen/width_button</item>
         <item name="android:layout_height">@dimen/height_button</item>
         <item name="android:elevation" tools:targetApi="lollipop">@dimen/elevation_button</item>
@@ -43,6 +50,32 @@
         <item name="android:textColor">@color/color_Baby_Blue_Eyes</item>
         <item name="android:textSize">18sp</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ErrorAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/color_error</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="ContentInputEditText" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:importantForAutofill" tools:targetApi="o">noExcludeDescendants</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:focusableInTouchMode">true</item>
+        <item name="hintTextColor">@color/color_Blue_Jean</item>
+        <item name="boxStrokeColor">@color/color_Blue_Jean</item>
+        <item name="errorEnabled">true</item>
+        <item name = "errorTextAppearance">@style/ErrorAppearance</item>
+    </style>
+    
+    <style name="InputEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColorHint">@color/color_Silver</item>
+        <item name="android:lines">1</item>
+        <item name="android:overScrollMode">always</item>
+        <item name="android:scrollbarStyle">insideInset</item>
+        <item name="android:maxLength">1000</item>
     </style>
 
 

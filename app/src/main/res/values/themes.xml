@@ -2,9 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.UProject" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/color_White</item>
-        <item name="colorPrimaryVariant">@color/color_White</item>
-        <item name="colorOnPrimary">@color/color_White</item>
+        <item name="colorPrimary">@color/color_Uranian_Blue</item>
+        <item name="colorPrimaryVariant">@color/color_Uranian_Blue</item>
+        <item name="colorOnPrimary">@color/color_Uranian_Blue</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
