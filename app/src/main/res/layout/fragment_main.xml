@@ -53,6 +53,7 @@
         app:layout_constraintLeft_toLeftOf="@id/tv_app_name"
         app:layout_constraintRight_toRightOf="@id/tv_app_name"
         app:layout_constraintTop_toTopOf="@id/tv_app_name"
+        tools:viewBindingIgnore="true"
         />
 
     <androidx.appcompat.widget.AppCompatTextView

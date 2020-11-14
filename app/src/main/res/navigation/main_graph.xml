@@ -11,14 +11,14 @@
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
-            android:id="@+id/action_mainFragment_to_signInFragment2"
+            android:id="@+id/action_mainFragment_to_signInFragment"
             app:destination="@id/signInFragment"
             app:enterAnim="@anim/from_right"
             app:exitAnim="@anim/to_left"
             app:popEnterAnim="@anim/from_left"
             app:popExitAnim="@anim/to_right" />
         <action
-            android:id="@+id/action_mainFragment_to_signUpFragment2"
+            android:id="@+id/action_mainFragment_to_signUpFragment"
             app:destination="@id/signUpFragment"
             app:enterAnim="@anim/from_left"
             app:exitAnim="@anim/to_right"

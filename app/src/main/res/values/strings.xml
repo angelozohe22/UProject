@@ -13,9 +13,20 @@
     <string name="hint_password">Contraseña</string>
     <string name="btn_signIn_tittle">Inicia sesión</string>
     <string name="lbl_forgot_password">¿Olvidaste tu contraseña?</string>
-    <string name="lbl_from_register_to">¿Ya tienes una cuenta? Inicia sesión</string>
-    <string name="lbl_from_logIn_to">¿Aún no tienes una cuenta? Registrate aquí!</string>
+    <string name="lbl_from_register_to_question">¿Ya tienes una cuenta?</string>
+    <string name="lbl_from_register_to_answer">Inicia sesión</string>
+    <string name="lbl_from_logIn_to_question">¿Aún no tienes una cuenta?</string>
+    <string name="lbl_from_logIn_to_answer">Regístrate aquí!</string>
     <string name="forgot_password_message">¡No se preocupe! Simplemente complete su correo electrónico y nosotros le enviaremos un enlace para restablecer su contraseña</string>
     <string name="btn_recoverPass_tittle">Recuperar contraseña</string>
     <string name="tittle_signIn">Inicia sesión</string>
+    <string name="error_username">"Ingrese un nombre"</string>
+    <string name="error_surname">"Ingrese un apellido"</string>
+    <string name="error_phone">"Ingrese su número telefónico"</string>
+    <string name="error_phone_size">"El número debe tener 9 digitos"</string>
+    <string name="error_email">"Hmm, ese correo no se ve bien"</string>
+    <string name="error_password">"La contraseña debe tener mínimo 6 digitos"</string>
+
+    <string name="color_Brown_Sugar">#A96743</string>
+    <string name="color_Gray_Web">#808080</string>
 </resources>

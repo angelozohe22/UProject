@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "494605701384",
+    "firebase_url": "https://dulcekatproject-8734a.firebaseio.com",
+    "project_id": "dulcekatproject-8734a",
+    "storage_bucket": "dulcekatproject-8734a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:494605701384:android:c0fe259eef2e29eca55cbd",
+        "android_client_info": {
+          "package_name": "com.example.uproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "494605701384-5bhsq74ga1bumrk850njpimm6tuos1h6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCC_jXLEv63jdbHQ_MB5DB6DmfV6Scpez4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "494605701384-5bhsq74ga1bumrk850njpimm6tuos1h6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

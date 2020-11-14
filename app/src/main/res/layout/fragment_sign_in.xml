@@ -8,13 +8,13 @@
     tools:context=".ui.fragments.signin.SignInFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgWaveUp"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_wave"
         android:background="@drawable/sign_in_wave_blue"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="0dp"
@@ -39,7 +39,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_tittle_signIn"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="68dp"
         android:text="@string/tittle_signIn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -49,26 +49,25 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cet_email_signIn"
+        style="@style/ContentInputEditText"
         android:layout_marginLeft="@dimen/margin_left_right_textField"
-        android:layout_marginTop="@dimen/marginTop_textField"
+        android:layout_marginTop="27dp"
         android:layout_marginRight="@dimen/margin_left_right_textField"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tv_tittle_signIn"
-        style="@style/ContentInputEditText"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/imgWaveUp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email_signIn"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress"
             style="@style/InputEditText"
-            />
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cet_password_signIn"
+        android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="@id/cet_email_signIn"
         app:layout_constraintRight_toRightOf="@id/cet_email_signIn"
         app:layout_constraintTop_toBottomOf="@id/cet_email_signIn"
@@ -88,6 +87,7 @@
         android:id="@+id/lbl_forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="@string/lbl_forgot_password"
         android:textColor="@color/color_Antique_Brass"
         android:textSize="16sp"
@@ -100,6 +100,7 @@
         android:id="@+id/btn_login_signIn"
         android:layout_marginTop="25dp"
         android:text="@string/btn_signIn_tittle"
+        android:enabled="false"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/lbl_forgot_password"
@@ -107,11 +108,13 @@
         />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_from_signIn_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/googlesans_regular"
-        android:text="@string/lbl_from_logIn_to"
+        android:text="@string/lbl_from_logIn_to_question"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

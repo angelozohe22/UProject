@@ -17,13 +17,13 @@
         />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appCompatImageView"
         android:layout_width="0dp"
         android:layout_height="@dimen/height_wave"
         android:background="@drawable/sign_up_wave_pink"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/btn_back_signUp"
@@ -39,7 +39,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tv_tittle_signUp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="56dp"
         android:text="@string/tittle_signUp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -63,12 +63,14 @@
             android:id="@+id/et_username_signUp"
             android:hint="@string/hint_username"
             android:inputType="textCapWords"
+            android:maxLength="1000"
             style="@style/InputEditText"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cet_surname_signUp"
+        android:layout_marginTop="8dp"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="@id/cet_username_signUp"
         app:layout_constraintRight_toRightOf="@id/cet_username_signUp"
@@ -80,12 +82,14 @@
             android:id="@+id/et_surname_signUp"
             android:hint="@string/hint_surname"
             android:inputType="textCapWords"
+            android:maxLength="1000"
             style="@style/InputEditText"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cet_phone_signUp"
+        android:layout_marginTop="8dp"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="@id/cet_surname_signUp"
         app:layout_constraintRight_toRightOf="@id/cet_surname_signUp"
@@ -97,12 +101,14 @@
             android:id="@+id/et_phone_signUp"
             android:hint="@string/hint_phone"
             android:inputType="number"
+            android:maxLength="9"
             style="@style/InputEditText"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cet_email_signUp"
+        android:layout_marginTop="8dp"
         app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="@id/cet_phone_signUp"
         app:layout_constraintRight_toRightOf="@id/cet_phone_signUp"
@@ -114,12 +120,14 @@
             android:id="@+id/et_email_signUp"
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
+            android:maxLength="1000"
             style="@style/InputEditText"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cet_password_signUp"
+        android:layout_marginTop="8dp"
         app:layout_constraintLeft_toLeftOf="@id/cet_email_signUp"
         app:layout_constraintRight_toRightOf="@id/cet_email_signUp"
         app:layout_constraintTop_toBottomOf="@id/cet_email_signUp"
@@ -131,13 +139,14 @@
             android:id="@+id/et_password_signUp"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
+            android:maxLength="1000"
             style="@style/InputEditText"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register_signUp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:text="@string/btn_sign_up_tittle"
         app:layout_constraintLeft_toLeftOf="@id/cet_password_signUp"
         app:layout_constraintRight_toRightOf="@id/cet_password_signUp"
@@ -146,14 +155,17 @@
         />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/lbl_from_signUp_to"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginBottom="20dp"
         android:fontFamily="@font/googlesans_regular"
-        android:text="@string/lbl_from_register_to"
+        android:text="@string/lbl_from_register_to_question"
+        android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_register_signUp" />
+        tools:layout_editor_absoluteY="687dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

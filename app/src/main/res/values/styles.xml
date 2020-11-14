@@ -62,9 +62,9 @@
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:focusableInTouchMode">true</item>
+        <item name="errorEnabled">true</item>
         <item name="hintTextColor">@color/color_Blue_Jean</item>
         <item name="boxStrokeColor">@color/color_Blue_Jean</item>
-        <item name="errorEnabled">true</item>
         <item name = "errorTextAppearance">@style/ErrorAppearance</item>
     </style>
     
@@ -75,7 +75,6 @@
         <item name="android:lines">1</item>
         <item name="android:overScrollMode">always</item>
         <item name="android:scrollbarStyle">insideInset</item>
-        <item name="android:maxLength">1000</item>
     </style>
 
 

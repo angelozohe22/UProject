@@ -9,7 +9,7 @@
     <dimen name="size_slogan">36sp</dimen>
     <dimen name="size_corner_textField">4dp</dimen>
     <dimen name="margin_left_right_textField">36dp</dimen>
-    <dimen name="marginTop_textField">27dp</dimen>
+    <dimen name="marginTop_textField">21dp</dimen>
     <dimen name="marginTop_Left_arrow_back">16dp</dimen>
     <dimen name="size_button_arrow_back">50dp</dimen>
     <dimen name="width_button">260dp</dimen>
