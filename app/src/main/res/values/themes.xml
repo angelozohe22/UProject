@@ -10,4 +10,17 @@
         <!-- Customize your theme here. -->
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
+    <style name="Theme.SplashScreen" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/color_White</item>
+        <item name="colorPrimaryVariant">@color/color_White</item>
+        <item name="colorOnPrimary">@color/color_White</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+
 </resources>

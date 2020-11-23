@@ -1,15 +1,24 @@
-package com.example.uproject.utils
+package com.example.uproject.common.utils
 
+import android.content.Context
 import android.os.Build
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.util.Patterns
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.example.uproject.R
+import com.example.uproject.core.aplication.Constants.EMAIL_ALREADY_IN_USE
+import com.example.uproject.core.aplication.Constants.INVALID_EMAIL
+import com.example.uproject.core.aplication.Constants.MISSING_EMAIL
+import com.example.uproject.core.aplication.Constants.USER_DISABLED
+import com.example.uproject.core.aplication.Constants.USER_NOT_FOUND
+import com.example.uproject.core.aplication.Constants.WRONG_PASSWORD
+import com.google.firebase.auth.FirebaseAuthException
+import java.lang.Exception
 
 fun Fragment.setStatusBarColor(color: Int = R.color.color_Uranian_Blue) {
     val window = this.requireActivity().window
@@ -59,4 +68,25 @@ fun isNullOrEmpty(text: Any): Boolean{
 fun isEmailValid(email: String): Boolean{
     val pattern = Patterns.EMAIL_ADDRESS
     return pattern.matcher(email).matches()
+}
+
+fun Fragment.authErrorMessage(error: Exception): String{
+    return when(error){
+        is FirebaseAuthException ->{
+            when(error.errorCode){
+                USER_NOT_FOUND -> getString(R.string.error_user_not_found)
+                USER_DISABLED  -> getString(R.string.error_user_disable)
+                WRONG_PASSWORD -> getString(R.string.error_wrong_password)
+                INVALID_EMAIL  -> getString(R.string.error_invalid_email)
+                MISSING_EMAIL  -> getString(R.string.error_missing_email)
+                EMAIL_ALREADY_IN_USE -> getString(R.string.error_email_already_in_use)
+                else -> error.message.toString()
+            }
+        }
+        else -> error.message.toString()
+    }
+}
+
+fun Fragment.toast(message: String){
+    Toast.makeText(this.requireContext(), message, Toast.LENGTH_LONG).show()
 }
