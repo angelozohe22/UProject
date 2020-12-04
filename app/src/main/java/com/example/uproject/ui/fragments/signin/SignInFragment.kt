@@ -1,7 +1,9 @@
 package com.example.uproject.ui.fragments.signin
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
@@ -19,7 +21,7 @@ import com.example.uproject.ui.viewmodels.factory.AuthViewModelFactory
 import com.example.uproject.common.utils.*
 
 class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
-
+    
     private val viewModel by activityViewModels<SignInViewModel> {
         AuthViewModelFactory(
             AuthRepositoryImpl(

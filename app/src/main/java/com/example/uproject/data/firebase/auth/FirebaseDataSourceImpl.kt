@@ -5,10 +5,8 @@ import com.example.uproject.common.FirebaseAuth
 import com.example.uproject.core.aplication.Constants.USERS
 import com.example.uproject.core.aplication.preferences
 import com.example.uproject.domain.model.User
-import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
-import java.lang.Exception
 
 class FirebaseDataSourceImpl: FirebaseDataSource {
 
@@ -23,7 +21,7 @@ class FirebaseDataSourceImpl: FirebaseDataSource {
                     firebaseUser?.let { user ->
                         preferences.deviceToken = user.uid
                         if(user.isEmailVerified) { _isSuccessful = true }
-                        else{ _isSuccessful = false; auth.signOut()}
+                        else{ _isSuccessful = false; auth.signOut() }
                     } ?: run {
                         Log.e("Error", "Entro al run por alguna razon y que firebaseUser es null")
                         _isSuccessful = false
@@ -51,48 +49,37 @@ class FirebaseDataSourceImpl: FirebaseDataSource {
     }
 
     override suspend fun signUpWithEmailAndPassword( username: String, phone: String, email: String, password: String): Boolean {
+        var newFirebaseUser = auth.currentUser
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            _isSuccessful = task.isSuccessful
-        }.addOnFailureListener {
-            _isSuccessful = false
+            newFirebaseUser = auth.currentUser
+            _isSuccessful = task.isSuccessful && newFirebaseUser != null
         }.await()
 
-        sendEmailVerification()
-
-        val id = auth.currentUser?.uid ?: "0"
-        val user = User(id, username, phone, email)
-        dbReference.collection(USERS).document(id).set(user).addOnCompleteListener {
-            if(it.isSuccessful){
-                preferences.apply {
-                    this.username   = username
-                    this.phone      = phone
-                    this.email      = email
+        if(_isSuccessful){
+            newFirebaseUser?.sendEmailVerification()?.await()
+            val id = newFirebaseUser?.uid ?: "0"
+            val user = User(id, username, phone, email)
+            dbReference.collection(USERS).document(id).set(user).addOnCompleteListener {
+                if(it.isSuccessful){
+                    preferences.apply {
+                        this.username   = username
+                        this.phone      = phone
+                        this.email      = email
+                    }
                 }
-            }
-            auth.signOut()
-        }.await()
+                auth.signOut()
+            }.await()
+        }
         return _isSuccessful
     }
 
     override suspend fun restorePassword(email: String): Boolean {
         auth.sendPasswordResetEmail(email).addOnCompleteListener {
-            Log.e("TAG", auth.currentUser.toString())
-            Log.e("TAG", auth.currentUser?.isEmailVerified.toString())
             _isSuccessful = it.isSuccessful
         }.addOnFailureListener {
             _isSuccessful = false
         }.await()
         return _isSuccessful
-    }
-
-    private suspend fun sendEmailVerification(){
-        val firebaseUser = auth.currentUser
-        firebaseUser?.let{
-            it.sendEmailVerification().addOnFailureListener {
-                Log.e("sendEmailVerification", it.cause.toString())
-                Log.e("sendEmailVerification", it.message.toString())
-            }.await()
-        }
     }
 
 
