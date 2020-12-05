@@ -1,4 +1,4 @@
-package com.example.uproject.ui.fragments.signup
+package com.example.uproject.ui.fragments.main
 
 import android.os.Bundle
 import android.view.View

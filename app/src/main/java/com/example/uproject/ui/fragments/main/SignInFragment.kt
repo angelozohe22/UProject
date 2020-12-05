@@ -1,12 +1,11 @@
-package com.example.uproject.ui.fragments.signin
+package com.example.uproject.ui.fragments.main
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.uproject.R
@@ -15,7 +14,6 @@ import com.example.uproject.core.Resource
 import com.example.uproject.data.firebase.auth.FirebaseDataSourceImpl
 import com.example.uproject.databinding.FragmentSignInBinding
 import com.example.uproject.domain.auth.AuthRepositoryImpl
-import com.example.uproject.ui.fragments.restorepassword.RecoverPasswordFragment
 import com.example.uproject.ui.viewmodels.SignInViewModel
 import com.example.uproject.ui.viewmodels.factory.AuthViewModelFactory
 import com.example.uproject.common.utils.*
@@ -121,6 +119,8 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
                         if (result.data) {
                             //Enviar a la pantalla de iniciar sesión
                             toast("Logeado")
+                            findNavController().navigate(R.id.action_signInFragment_to_homeActivity)
+                            requireActivity().finish()
                             clearFields()
                         }else toast("Debe verificar el correo electrónico para poder iniciar sesión")
                     }
