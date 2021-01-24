@@ -1,12 +1,17 @@
 package com.example.uproject.common.utils
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.os.Build
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Patterns
+import android.view.MotionEvent
 import android.view.WindowManager
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -20,9 +25,9 @@ import com.example.uproject.core.aplication.Constants.WRONG_PASSWORD
 import com.google.firebase.auth.FirebaseAuthException
 import java.lang.Exception
 
-fun Fragment.setStatusBarColor(color: Int = R.color.color_Uranian_Blue) {
-    val window = this.requireActivity().window
-    val customColor = transformColor(color)
+fun setStatusBarColor(activity:Activity, color: Int = R.color.color_Uranian_Blue) {
+    val window = activity.window
+    val customColor = transformColor(activity.applicationContext, color)
     if (Build.VERSION.SDK_INT >= 21) {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
@@ -30,9 +35,9 @@ fun Fragment.setStatusBarColor(color: Int = R.color.color_Uranian_Blue) {
     }
 }
 
-fun Fragment.setNavigationBarColor(color: Int = R.color.color_Unbleached_Silk) {
-    val window = this.requireActivity().window
-    val customColor = transformColor(color)
+fun setNavigationBarColor(activity: Activity, color: Int = R.color.color_Unbleached_Silk) {
+    val window = activity.window
+    val customColor = transformColor(activity.applicationContext, color)
     if (Build.VERSION.SDK_INT >= 21) {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION)
@@ -40,8 +45,8 @@ fun Fragment.setNavigationBarColor(color: Int = R.color.color_Unbleached_Silk) {
     }
 }
 
-fun Fragment.transformColor(color: Int): Int{
-    return ContextCompat.getColor(requireContext(), color)
+fun transformColor(ctx: Context, color: Int): Int{
+    return ContextCompat.getColor(ctx, color)
 }
 
 fun afterTextChanged(function: (s: Editable) -> Unit): TextWatcher {
@@ -89,4 +94,40 @@ fun Fragment.authErrorMessage(error: Exception): String{
 
 fun Fragment.toast(message: String){
     Toast.makeText(this.requireContext(), message, Toast.LENGTH_LONG).show()
+}
+
+fun EditText.makeClearableEditText() {
+
+    val clearDrawable = ContextCompat.getDrawable(this.context, R.drawable.ic_cancel)
+    clearDrawable?.setBounds(0,0, clearDrawable.intrinsicWidth, clearDrawable.intrinsicHeight)
+
+    val validation = afterTextChanged {
+        this.setCompoundDrawables(null, null,
+            if (text.isNotEmpty()) clearDrawable else null,
+            null)
+    }
+    this.addTextChangedListener(validation)
+
+    this.onRightDrawableClicked {
+        this.text.clear()
+        this.setCompoundDrawables(null, null, null, null)
+        this.requestFocus()
+    }
+}
+
+//Revisar
+@SuppressLint("ClickableViewAccessibility")
+fun EditText.onRightDrawableClicked(onClicked: (view: EditText) -> Unit) {
+    this.setOnTouchListener { v, event ->
+        var hasConsumed = false
+        if (v is EditText) {
+            if (event.x >= v.width - v.totalPaddingRight) {
+                if (event.action == MotionEvent.ACTION_UP) {
+                    onClicked(this)
+                }
+                hasConsumed = true
+            }
+        }
+        hasConsumed
+    }
 }

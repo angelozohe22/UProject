@@ -1,0 +1,82 @@
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:targetApi="lollipop">
+    <aapt:attr name="android:drawable">
+        <vector
+            android:name="vector"
+            android:width="46dp"
+            android:height="42dp"
+            android:viewportWidth="46"
+            android:viewportHeight="42">
+            <group
+                android:name="group"
+                android:pivotX="23"
+                android:pivotY="21"
+                android:scaleX="0.9"
+                android:scaleY="0.9">
+                <path
+                    android:name="heart_outline"
+                    android:pathData="M 41.134 3.308 C 36.318 -0.966 29.155 -0.197 24.734 4.557 L 23.003 6.41 L 21.271 4.557 C 16.859 -0.197 9.688 -0.966 4.871 3.308 C 2.245 5.722 0.679 9.079 0.516 12.642 C 0.354 16.205 1.608 19.691 4.003 22.334 L 21.003 40.619 C 21.339 40.991 21.773 41.262 22.255 41.4 C 22.738 41.539 23.249 41.539 23.732 41.4 C 24.214 41.262 24.648 40.991 24.984 40.619 L 41.996 22.334 C 44.394 19.693 45.651 16.207 45.49 12.643 C 45.328 9.08 43.762 5.721 41.135 3.308 Z"
+                    android:strokeColor="#ff384d"
+                    android:strokeWidth="1"/>
+            </group>
+        </vector>
+    </aapt:attr>
+    <target android:name="group">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="scaleX"
+                    android:duration="300"
+                    android:valueFrom="0.9"
+                    android:valueTo="0.5"
+                    android:valueType="floatType"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"/>
+                <objectAnimator
+                    android:propertyName="scaleY"
+                    android:duration="300"
+                    android:valueFrom="0.9"
+                    android:valueTo="0.5"
+                    android:valueType="floatType"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"/>
+                <objectAnimator
+                    android:propertyName="scaleX"
+                    android:startOffset="300"
+                    android:duration="500"
+                    android:valueFrom="0.5"
+                    android:valueTo="0.9"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/overshoot_interpolator"/>
+                <objectAnimator
+                    android:propertyName="scaleY"
+                    android:startOffset="300"
+                    android:duration="500"
+                    android:valueFrom="0.5"
+                    android:valueTo="0.9"
+                    android:valueType="floatType"
+                    android:interpolator="@android:anim/overshoot_interpolator"/>
+            </set>
+        </aapt:attr>
+    </target>
+    <target android:name="heart_outline">
+        <aapt:attr name="android:animation">
+            <set>
+                <objectAnimator
+                    android:propertyName="strokeAlpha"
+                    android:duration="100"
+                    android:valueFrom="1"
+                    android:valueTo="0"
+                    android:valueType="floatType"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"/>
+                <objectAnimator
+                    android:propertyName="fillColor"
+                    android:duration="100"
+                    android:valueFrom="#ffffff"
+                    android:valueTo="#ff384d"
+                    android:valueType="colorType"
+                    android:interpolator="@android:interpolator/fast_out_slow_in"/>
+            </set>
+        </aapt:attr>
+    </target>
+</animated-vector>

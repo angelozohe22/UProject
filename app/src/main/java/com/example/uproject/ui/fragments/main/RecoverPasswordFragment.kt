@@ -47,11 +47,9 @@ class RecoverPasswordFragment: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        with(binding){
-            btnRestorePassword.apply {
-                isEnabled = false
-                setBackgroundResource(R.drawable.btn_corner_dissable)
-            }
+        binding.btnRestorePassword.apply{
+            isEnabled = false
+            setBackgroundResource(R.drawable.btn_corner_dissable)
         }
         textFieldForgotPassValidation()
     }
@@ -112,14 +110,14 @@ class RecoverPasswordFragment: DialogFragment() {
     }
 
     private fun showProgress(){
-        with(binding){
+        binding.apply{
             btnRestorePassword.visibility = View.GONE
             progressBarRestorePass.visibility = View.VISIBLE
         }
     }
 
     private fun hideProgress(){
-        with(binding){
+        binding.apply{
             btnRestorePassword.visibility = View.VISIBLE
             progressBarRestorePass.visibility = View.GONE
         }

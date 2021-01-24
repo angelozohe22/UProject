@@ -14,10 +14,10 @@ class MainFragment : BaseFragment<FragmentMainBinding>(R.layout.fragment_main) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentMainBinding.bind(view)
-        setStatusBarColor()
-        setNavigationBarColor()
+        setStatusBarColor(requireActivity())
+        setNavigationBarColor(requireActivity())
 
-        with(binding){
+        binding.apply{
             btnMainSignUp.setOnClickListener {
                 findNavController().navigate(R.id.action_mainFragment_to_signUpFragment)
             }

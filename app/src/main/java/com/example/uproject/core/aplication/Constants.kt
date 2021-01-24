@@ -1,11 +1,15 @@
 package com.example.uproject.core.aplication
 
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 object Constants {
 
     //FirebaseAuth
     val FIREBASE_AUTH = FirebaseAuth.getInstance()
+
+    //Firebase Firestore
+    val FIREBASE_FIRESTORE = FirebaseFirestore.getInstance()
 
     //Firebase Collections
     const val USERS = "Users"

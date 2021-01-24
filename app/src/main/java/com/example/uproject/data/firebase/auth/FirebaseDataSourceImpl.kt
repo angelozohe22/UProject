@@ -2,10 +2,10 @@ package com.example.uproject.data.firebase.auth
 
 import android.util.Log
 import com.example.uproject.common.FirebaseAuth
+import com.example.uproject.common.FirebaseFirestore
 import com.example.uproject.core.aplication.Constants.USERS
 import com.example.uproject.core.aplication.preferences
 import com.example.uproject.domain.model.User
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 
 class FirebaseDataSourceImpl: FirebaseDataSource {

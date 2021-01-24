@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ic_favorite_product"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="6dp"
+            android:src="@drawable/avd_animation_heart_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/item_image_product"
+            android:layout_width="0dp"
+            android:layout_height="95dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ic_favorite_product" />
+
+        <LinearLayout
+            android:layout_width="115dp"
+            android:layout_height="match_parent"
+            android:layout_marginTop="6dp"
+            android:orientation="vertical"
+            android:paddingBottom="6dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/item_image_product"
+            app:layout_constraintTop_toBottomOf="@id/item_image_product">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_name_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/googlesans_medium"
+                android:maxLines="1"
+                android:text="Mantequilla sin sal"
+                android:textColor="@color/color_Gray_Web"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_mark_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/googlesans_medium"
+                android:maxLines="1"
+                android:text="Sello de Oro"
+                android:textColor="@color/color_Gray_Web"
+                android:textSize="12sp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/item_weight_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/googlesans_medium"
+                android:maxLines="1"
+                android:text="2 Kgram"
+                android:textColor="@color/color_gray_gray"
+                android:textSize="12sp" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view_discount_support"
+            android:layout_width="46dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/background_discount"
+            app:layout_constraintTop_toBottomOf="@id/item_image_product"
+            app:layout_constraintRight_toRightOf="@id/item_image_product"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_offer_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15% DESC"
+            android:textSize="8sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_White"
+            android:fontFamily="@font/googlesans_medium"
+            app:layout_constraintLeft_toLeftOf="@id/view_discount_support"
+            app:layout_constraintRight_toRightOf="@id/view_discount_support"
+            app:layout_constraintTop_toTopOf="@id/view_discount_support"
+            app:layout_constraintBottom_toBottomOf="@id/view_discount_support"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_real_price_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="S/ 9.89"
+            android:textColor="@color/color_Gray_Web"
+            android:textSize="12sp"
+            android:fontFamily="@font/googlesans_medium"
+            app:layout_constraintEnd_toEndOf="@+id/view_discount_support"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_discount_support"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_discount_price_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="S/ 8.89"
+            android:textSize="16sp"
+            android:textColor="@color/color_Uranian_Blue"
+            android:textStyle="bold"
+            android:fontFamily="@font/googlesans_medium"
+            app:layout_constraintRight_toRightOf="@id/item_image_product"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

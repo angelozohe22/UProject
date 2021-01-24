@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="180dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/favorite_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_Uranian_Blue"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintRight_toRightOf="parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ic_favorite_product_wishlist"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginRight="6dp"
+                android:src="@drawable/avd_animation_heart_1"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="0dp"
+                android:layout_height="95dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ic_favorite_product_wishlist"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_name_product_favorite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="6dp"
+            android:text="Mantequilla sin sal"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textColor="@color/color_Gray_Web"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/googlesans_medium"
+            app:layout_constraintTop_toBottomOf="@id/favorite_container"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_mark_product_favorite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Sello de oro"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textColor="@color/color_Gray_Web"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/googlesans_medium"
+            app:layout_constraintTop_toBottomOf="@id/item_name_product_favorite"
+            app:layout_constraintLeft_toLeftOf="@id/item_name_product_favorite"
+            app:layout_constraintRight_toRightOf="@id/item_name_product_favorite"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/item_weight_product_favorite"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="2 Kgram"
+            android:textAlignment="center"
+            android:textSize="12sp"
+            android:textColor="@color/color_gray_gray"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:fontFamily="@font/googlesans_medium"
+            app:layout_constraintTop_toBottomOf="@id/item_mark_product_favorite"
+            app:layout_constraintLeft_toLeftOf="@id/item_mark_product_favorite"
+            app:layout_constraintRight_toRightOf="@id/item_mark_product_favorite"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

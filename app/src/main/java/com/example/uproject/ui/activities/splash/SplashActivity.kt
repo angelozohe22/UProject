@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.uproject.common.FirebaseAuth
+import com.example.uproject.ui.activities.home.HomeActivity
 import com.example.uproject.ui.activities.main.MainActivity
 
 class SplashActivity : AppCompatActivity() {
@@ -20,7 +21,7 @@ class SplashActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }else{
-            val intent = Intent(this, MainActivity::class.java) // Esto tiene que cambiar a home
+            val intent = Intent(this, HomeActivity::class.java)
             startActivity(intent)
             finish()
         }

@@ -1,5 +1,6 @@
 package com.example.uproject.ui.fragments.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.text.HtmlCompat
@@ -17,6 +18,7 @@ import com.example.uproject.domain.auth.AuthRepositoryImpl
 import com.example.uproject.ui.viewmodels.SignInViewModel
 import com.example.uproject.ui.viewmodels.factory.AuthViewModelFactory
 import com.example.uproject.common.utils.*
+import com.example.uproject.ui.activities.home.search.SearchActivity
 
 class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
     
@@ -31,14 +33,12 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSignInBinding.bind(view)
-        setStatusBarColor()
-        setNavigationBarColor()
+        setStatusBarColor(requireActivity())
+        setNavigationBarColor(requireActivity())
 
-        with(binding){
-            btnLoginSignIn.apply {
-                isEnabled  = false
-                setBackgroundResource(R.drawable.btn_corner_dissable)
-            }
+        binding.btnLoginSignIn.apply{
+            isEnabled  = false
+            setBackgroundResource(R.drawable.btn_corner_dissable)
         }
 
         binding.lblForgotPassword.setOnClickListener {
@@ -117,8 +117,6 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
                     is Resource.Success -> {
                         hideProgress()
                         if (result.data) {
-                            //Enviar a la pantalla de iniciar sesión
-                            toast("Logeado")
                             findNavController().navigate(R.id.action_signInFragment_to_homeActivity)
                             requireActivity().finish()
                             clearFields()
@@ -147,26 +145,25 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
     }
 
     private fun showProgress(){
-        with(binding){
+        binding.apply{
             btnLoginSignIn.visibility = View.GONE
             progressBarSignIn.visibility = View.VISIBLE
         }
     }
 
     private fun hideProgress(){
-        with(binding){
+        binding.apply{
             btnLoginSignIn.visibility = View.VISIBLE
             progressBarSignIn.visibility = View.GONE
         }
     }
 
     private fun clearFields(){
-        with(binding){
+        binding.apply{
             etEmailSignIn.text?.clear()
             etPasswordSignIn.text?.clear()
             cetEmailSignIn.clearFocus()
             cetPasswordSignIn.clearFocus()
-
         }
     }
 

@@ -30,10 +30,10 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sig
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentSignUpBinding.bind(view)
-        setStatusBarColor()
-        setNavigationBarColor()
+        setStatusBarColor(requireActivity())
+        setNavigationBarColor(requireActivity())
 
-        with(binding){
+        binding.apply{
             btnRegisterSignUp.apply {
                 isEnabled = false
                 setBackgroundResource(R.drawable.btn_corner_dissable)
@@ -58,10 +58,10 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sig
     }
 
     private fun textFieldSignUpValidations(){
-        val btnSignUp   = binding.btnRegisterSignUp
-        val cetPhone    = binding.cetPhoneSignUp
-        val cetEmail    = binding.cetEmailSignUp
-        val cetPassword = binding.cetPasswordSignUp
+        val btnSignUp  = binding.btnRegisterSignUp
+        val cetPhone     = binding.cetPhoneSignUp
+        val cetEmail     = binding.cetEmailSignUp
+        val cetPassword  = binding.cetPasswordSignUp
         val etUsername  = binding.etUsernameSignUp
         val etPhone     = binding.etPhoneSignUp
         val etEmail     = binding.etEmailSignUp
@@ -133,7 +133,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sig
                         is Resource.Success -> {
                             hideProgress()
                             if(result.data) {
-                                toast("Usuario registrado con éxito")
+                                toast("Usuario registrado con éxito. Verificar correo para iniciar sesión")
                                 navigateFromSignUpToSignIn()
                             }
                         }
@@ -160,21 +160,21 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sig
     }
 
     private fun showProgress(){
-        with(binding){
+        binding.apply{
             btnRegisterSignUp.visibility = View.GONE
             progressBarSignUp.visibility = View.VISIBLE
         }
     }
 
     private fun hideProgress(){
-        with(binding){
+        binding.apply{
             btnRegisterSignUp.visibility = View.VISIBLE
             progressBarSignUp.visibility = View.GONE
         }
     }
 
     private fun clearFields(){
-        with(binding){
+        binding.apply{
             etUsernameSignUp.text?.clear()
             etPhoneSignUp.text?.clear()
             etPasswordSignUp.text?.clear()
