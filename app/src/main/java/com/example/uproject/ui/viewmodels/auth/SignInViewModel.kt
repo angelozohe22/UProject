@@ -1,13 +1,8 @@
-package com.example.uproject.ui.viewmodels
+package com.example.uproject.ui.viewmodels.auth
 
-import android.os.storage.StorageManager
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.uproject.core.Resource
 import com.example.uproject.domain.auth.AuthRepository
-import com.google.firebase.auth.FirebaseAuthEmailException
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.FirebaseAuthInvalidUserException
 import kotlinx.coroutines.Dispatchers
 import java.lang.Exception
 

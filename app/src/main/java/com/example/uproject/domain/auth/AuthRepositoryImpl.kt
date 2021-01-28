@@ -1,19 +1,19 @@
 package com.example.uproject.domain.auth
 
-import com.example.uproject.data.firebase.auth.FirebaseDataSource
+import com.example.uproject.data.firebase.auth.FirebaseAuthDataSource
 
-class AuthRepositoryImpl(private val firebaseDataSource: FirebaseDataSource): AuthRepository {
+class AuthRepositoryImpl(private val firebaseAuthDataSource: FirebaseAuthDataSource): AuthRepository {
 
     override suspend fun signInWithEmailAndPassword(email: String, password: String): Boolean {
-        return firebaseDataSource.signInWithEmailAndPassword(email, password)
+        return firebaseAuthDataSource.signInWithEmailAndPassword(email, password)
     }
 
     override suspend fun signUpWithEmailAndPassword(username: String, phone: String, email: String, password: String
     ): Boolean {
-        return firebaseDataSource.signUpWithEmailAndPassword(username, phone, email, password)
+        return firebaseAuthDataSource.signUpWithEmailAndPassword(username, phone, email, password)
     }
 
     override suspend fun restorePassword(email: String): Boolean {
-        return firebaseDataSource.restorePassword(email)
+        return firebaseAuthDataSource.restorePassword(email)
     }
 }

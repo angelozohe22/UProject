@@ -47,13 +47,13 @@ class ProductListAdapter: RecyclerView.Adapter<ProductListAdapter.ProductViewHol
                 itemMarkProduct.text            = product.mark
                 itemWeightProduct.text          = product.weight
                 itemOfferProduct.text           = product.offer.toString().plus("% DESC")
-                itemRealPriceProduct.text       = "S/ ${product.price}"
+                //itemRealPriceProduct.text       = "S/ ${product.price}"
                 itemRealPriceProduct.paintFlags = itemRealPriceProduct.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-                Log.e("price", product.price.toString())
+                //Log.e("price", product.price.toString())
                 val discountPrice   = product.price - product.price*product.offer/100
-                Log.e("discountPrice", discountPrice.toString())
+                //Log.e("discountPrice", discountPrice.toString())
                 val finalPrice      = Math.round(discountPrice*100.0) / 100.0
-                Log.e("finalPrice", finalPrice.toString())
+                //Log.e("finalPrice", finalPrice.toString())
                 itemDiscountPriceProduct.text   = "S/ $finalPrice"
 
                 icFavoriteProduct.apply{

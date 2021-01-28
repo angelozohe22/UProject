@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<!--androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent">-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         tools:context=".ui.fragments.home.ProfileFragment">
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -36,7 +39,7 @@
             app:layout_constraintTop_toBottomOf="@id/title_profile"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tv_username_profile"
+            android:id="@+id/ctv_username_profile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -47,6 +50,7 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_username_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_card_corner"
@@ -60,17 +64,18 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tv_mail_profile"
+            android:id="@+id/ctv_mail_profile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:hint="Correo electrónico"
-            app:layout_constraintLeft_toLeftOf="@id/tv_username_profile"
-            app:layout_constraintTop_toBottomOf="@id/tv_username_profile"
+            app:layout_constraintLeft_toLeftOf="@id/ctv_username_profile"
+            app:layout_constraintTop_toBottomOf="@id/ctv_username_profile"
             app:layout_constraintRight_toRightOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_mail_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_card_corner"
@@ -84,17 +89,18 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/tv_phone_profile"
+            android:id="@+id/ctv_phone_profile"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginRight="16dp"
             android:hint="Teléfono"
-            app:layout_constraintLeft_toLeftOf="@id/tv_mail_profile"
-            app:layout_constraintTop_toBottomOf="@id/tv_mail_profile"
+            app:layout_constraintLeft_toLeftOf="@id/ctv_mail_profile"
+            app:layout_constraintTop_toBottomOf="@id/ctv_mail_profile"
             app:layout_constraintRight_toRightOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tv_phone_profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/background_card_corner"
@@ -106,78 +112,6 @@
                 android:textColor="@color/color_Gray_Web"/>
 
         </com.google.android.material.textfield.TextInputLayout>
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_options"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="32dp"
-            android:text="Opciones"
-            android:textSize="18sp"
-            android:fontFamily="@font/googlesans_medium"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_phone_profile"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_edit_profile"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:drawablePadding="32dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="24dp"
-            android:drawableLeft="@drawable/ic_profile_silver"
-            android:drawableRight="@drawable/ic_arrow_right"
-            android:background="@drawable/btn_corner"
-            android:text="Editar informacion"
-            android:textColor="@color/color_White"
-            android:textAlignment="textStart"
-            android:textAllCaps="false"
-            app:layout_constraintLeft_toLeftOf="@id/title_options"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_options"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_my_bag"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:drawablePadding="30dp"
-            android:layout_marginTop="16dp"
-            android:drawableLeft="@drawable/ic_bag_silver"
-            android:drawableRight="@drawable/ic_arrow_right"
-            android:background="@drawable/btn_corner"
-            android:text="Mi bolsa"
-            android:textAlignment="textStart"
-            android:textColor="@color/color_White"
-            android:textAllCaps="false"
-            app:layout_constraintLeft_toLeftOf="@id/btn_edit_profile"
-            app:layout_constraintRight_toRightOf="@id/btn_edit_profile"
-            app:layout_constraintTop_toBottomOf="@id/btn_edit_profile"/>
-
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_my_wishlist"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:drawablePadding="30dp"
-            android:layout_marginTop="16dp"
-            android:drawableLeft="@drawable/ic_wishlist_silver"
-            android:drawableRight="@drawable/ic_arrow_right"
-            android:background="@drawable/btn_corner"
-            android:text="Mis favoritos"
-            android:textAlignment="textStart"
-            android:textColor="@color/color_White"
-            android:textAllCaps="false"
-            app:layout_constraintLeft_toLeftOf="@id/btn_my_bag"
-            app:layout_constraintRight_toRightOf="@id/btn_my_bag"
-            app:layout_constraintTop_toBottomOf="@id/btn_my_bag"/>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+<!--</androidx.core.widget.NestedScrollView>-->

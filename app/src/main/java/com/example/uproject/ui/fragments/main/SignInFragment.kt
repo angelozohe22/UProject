@@ -1,31 +1,28 @@
 package com.example.uproject.ui.fragments.main
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.ActivityNavigator
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.uproject.R
 import com.example.uproject.base.BaseFragment
 import com.example.uproject.core.Resource
-import com.example.uproject.data.firebase.auth.FirebaseDataSourceImpl
+import com.example.uproject.data.firebase.auth.FirebaseAuthDataSourceImpl
 import com.example.uproject.databinding.FragmentSignInBinding
 import com.example.uproject.domain.auth.AuthRepositoryImpl
-import com.example.uproject.ui.viewmodels.SignInViewModel
-import com.example.uproject.ui.viewmodels.factory.AuthViewModelFactory
+import com.example.uproject.ui.viewmodels.auth.SignInViewModel
+import com.example.uproject.ui.viewmodels.auth.factory.AuthViewModelFactory
 import com.example.uproject.common.utils.*
-import com.example.uproject.ui.activities.home.search.SearchActivity
 
 class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
     
     private val viewModel by activityViewModels<SignInViewModel> {
         AuthViewModelFactory(
             AuthRepositoryImpl(
-                FirebaseDataSourceImpl()
+                FirebaseAuthDataSourceImpl()
             )
         )
     }

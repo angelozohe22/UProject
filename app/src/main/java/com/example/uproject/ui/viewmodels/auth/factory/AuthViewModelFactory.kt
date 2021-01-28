@@ -1,4 +1,4 @@
-package com.example.uproject.ui.viewmodels.factory
+package com.example.uproject.ui.viewmodels.auth.factory
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

@@ -10,11 +10,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.uproject.R
 import com.example.uproject.base.BaseFragment
 import com.example.uproject.core.Resource
-import com.example.uproject.data.firebase.auth.FirebaseDataSourceImpl
+import com.example.uproject.data.firebase.auth.FirebaseAuthDataSourceImpl
 import com.example.uproject.databinding.FragmentSignUpBinding
 import com.example.uproject.domain.auth.AuthRepositoryImpl
-import com.example.uproject.ui.viewmodels.SignUpViewModel
-import com.example.uproject.ui.viewmodels.factory.AuthViewModelFactory
+import com.example.uproject.ui.viewmodels.auth.SignUpViewModel
+import com.example.uproject.ui.viewmodels.auth.factory.AuthViewModelFactory
 import com.example.uproject.common.utils.*
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sign_up) {
@@ -22,7 +22,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sig
     private val viewModel by activityViewModels<SignUpViewModel> {
         AuthViewModelFactory(
             AuthRepositoryImpl(
-                FirebaseDataSourceImpl()
+                FirebaseAuthDataSourceImpl()
             )
         )
     }

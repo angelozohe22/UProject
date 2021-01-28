@@ -1,4 +1,4 @@
-package com.example.uproject.ui.viewmodels
+package com.example.uproject.ui.viewmodels.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData

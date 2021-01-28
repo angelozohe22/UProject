@@ -2,10 +2,14 @@ package com.example.uproject.ui.fragments.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,31 +18,49 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.uproject.common.FirebaseFirestore
+import com.example.uproject.core.Resource
+import com.example.uproject.data.firebase.home.FirebaseFirestoreDataSourceImpl
+import com.example.uproject.data.local.db.DulcekatDataBase
+import com.example.uproject.data.local.db.category.CategoryEntity
+import com.example.uproject.data.local.source.LocalDataSourceImpl
 import com.example.uproject.databinding.FragmentHomeBinding
+import com.example.uproject.domain.model.Category
 import com.example.uproject.domain.model.CategoryDocument
 import com.example.uproject.domain.model.Product
 import com.example.uproject.domain.model.SlideItem
+import com.example.uproject.domain.repository.DulcekatRepositoryImpl
+import com.example.uproject.ui.activities.home.category.CategoryActivity
 import com.example.uproject.ui.activities.home.contactus.ContactUsActivity
 import com.example.uproject.ui.activities.home.products.ProductsActivity
 import com.example.uproject.ui.activities.home.search.SearchActivity
 import com.example.uproject.ui.fragments.home.adapter.CategoryListAdapter
 import com.example.uproject.ui.fragments.home.adapter.ProductListAdapter
 import com.example.uproject.ui.fragments.home.adapter.SlideAdapter
+import com.example.uproject.ui.viewmodels.home.HomeFragmentViewModel
+import com.example.uproject.ui.viewmodels.home.factoryhome.HomeFragmentViewModelFactory
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kotlin.math.abs
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), CategoryListAdapter.OnCategoryClickListener {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var slideAdapter: SlideAdapter
-    private val categoryAdapter by lazy { CategoryListAdapter() }
+    private val categoryAdapter by lazy { CategoryListAdapter(this) }
     private val productAdapter   by lazy { ProductListAdapter() }
-    private val dbReference       by lazy { FirebaseFirestore.getInstance() }
+
+    private val viewModel by activityViewModels<HomeFragmentViewModel>{
+        HomeFragmentViewModelFactory(
+            DulcekatRepositoryImpl(
+                LocalDataSourceImpl(DulcekatDataBase.getInstance(requireContext())),
+                FirebaseFirestoreDataSourceImpl()
+            )
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,17 +97,18 @@ class HomeFragment : Fragment() {
             adapter = categoryAdapter
         }
 
-        /*//Esto es de prueba, debemos manejar MVVM con esto
-        lifecycleScope.launch {
-            val result = withContext(Dispatchers.IO){
-                dbReference.collection("Category")
-                    .document("categories").get().await()
+        viewModel.fetchCategoryList().observe(viewLifecycleOwner, Observer {
+            it?.let { result->
+                when(result){
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        val listCategory = result.data
+                        categoryAdapter.setData(listCategory)
+                    }
+                    is Resource.Failure -> {}
+                }
             }
-            if(result != null){
-                val snapshot = result.toObject(CategoryDocument::class.java)?.categoryList ?: emptyList()
-                categoryAdapter.setData(snapshot)
-            }
-        }*/
+        })
     }
 
     private fun setupProductRecyclerView(){
@@ -147,6 +170,15 @@ class HomeFragment : Fragment() {
 //        }
 //    }
 
+    override fun onCategoryClicked(category: CategoryEntity, colorRGB: Int) {
+        val categoryBundle = Bundle()
+        categoryBundle.putParcelable("category", category)
+        val intent = Intent(requireActivity(), CategoryActivity::class.java)
+        intent.putExtras(categoryBundle)
+        intent.putExtra("colorRGB", colorRGB)
+        startActivity(intent)
+        Toast.makeText(requireContext(), category.name, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -2,6 +2,7 @@ package com.example.uproject.ui.fragments.home.adapter
 
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,14 +15,21 @@ import coil.request.ImageRequest
 import coil.size.Size
 import coil.transform.Transformation
 import com.example.uproject.R
+import com.example.uproject.data.local.db.category.CategoryEntity
 import com.example.uproject.databinding.ItemCategoryBinding
 import com.example.uproject.domain.model.Category
 
-class CategoryListAdapter:RecyclerView.Adapter<CategoryListAdapter.CategoryViewHolder>() {
+class CategoryListAdapter(
+    private val categoryClickListener: OnCategoryClickListener
+):RecyclerView.Adapter<CategoryListAdapter.CategoryViewHolder>() {
 
-    private var _categoryList = emptyList<Category>()
+    private var _categoryList = emptyList<CategoryEntity>()
 
-    fun setData(data: List<Category>){
+    interface OnCategoryClickListener{
+        fun onCategoryClicked(category: CategoryEntity, colorRGB: Int)
+    }
+
+    fun setData(data: List<CategoryEntity>){
         this._categoryList = data
         notifyDataSetChanged()
     }
@@ -42,14 +50,15 @@ class CategoryListAdapter:RecyclerView.Adapter<CategoryListAdapter.CategoryViewH
 
     inner class CategoryViewHolder(itemView: View):RecyclerView.ViewHolder(itemView){
         private val binding = ItemCategoryBinding.bind(itemView)
-        fun bindView(category: Category){
+        fun bindView(category: CategoryEntity){
             binding.apply {
                 itemCategoryName.text = category.name
+                var colorRGB = 0
                 val imageLoader = ImageLoader.Builder(itemView.context)
                     .componentRegistry {
                         add(SvgDecoder(itemView.context))
                     }.build()
-                val request = ImageRequest.Builder(itemImageCategory.context)
+                val request = ImageRequest.Builder(itemView.context)
                     .data(category.image)
                     .target(itemImageCategory)
                     .transformations(object : Transformation{
@@ -61,18 +70,20 @@ class CategoryListAdapter:RecyclerView.Adapter<CategoryListAdapter.CategoryViewH
                             if (swatch != null) {
                                 //Una funcion para variar el color rgb
                                 val hsv = swatch.hsl
-                                var darkColor = swatch.rgb
-                                Color.colorToHSV(darkColor, hsv)
+                                colorRGB = swatch.rgb
+                                Color.colorToHSV(colorRGB, hsv)
                                 hsv[1] *= 0.7f
-                                darkColor = Color.HSVToColor(hsv)
-
-                                itemCardCategory.setCardBackgroundColor(darkColor)
+                                colorRGB = Color.HSVToColor(hsv)
+                                itemCardCategory.setCardBackgroundColor(colorRGB)
                             }
                             return input
                         }
                     })
                     .build()
                 imageLoader.enqueue(request)
+                itemCardCategory.setOnClickListener {
+                    categoryClickListener.onCategoryClicked(category, colorRGB)
+                }
             }
         }
     }

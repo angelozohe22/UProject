@@ -8,7 +8,7 @@ import com.example.uproject.core.aplication.preferences
 import com.example.uproject.domain.model.User
 import kotlinx.coroutines.tasks.await
 
-class FirebaseDataSourceImpl: FirebaseDataSource {
+class FirebaseAuthDataSourceImpl: FirebaseAuthDataSource {
 
     private val auth by lazy { FirebaseAuth.getInstance() }
     private val dbReference by lazy { FirebaseFirestore.getInstance() }
