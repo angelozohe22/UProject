@@ -1,5 +1,6 @@
 package com.example.uproject.ui.fragments.main
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.text.HtmlCompat
@@ -16,6 +17,7 @@ import com.example.uproject.domain.auth.AuthRepositoryImpl
 import com.example.uproject.ui.viewmodels.auth.SignInViewModel
 import com.example.uproject.ui.viewmodels.auth.factory.AuthViewModelFactory
 import com.example.uproject.common.utils.*
+import com.example.uproject.ui.activities.home.HomeActivity
 
 class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
     
@@ -114,7 +116,8 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
                     is Resource.Success -> {
                         hideProgress()
                         if (result.data) {
-                            findNavController().navigate(R.id.action_signInFragment_to_homeActivity)
+                            val intent = Intent(requireActivity(), HomeActivity::class.java)
+                            startActivity(intent)
                             requireActivity().finish()
                             clearFields()
                         }else toast("Debe verificar el correo electrónico para poder iniciar sesión")

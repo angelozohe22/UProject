@@ -3,6 +3,8 @@ package com.example.uproject.data.firebase.home
 import com.example.uproject.common.FirebaseFirestore
 import com.example.uproject.domain.model.Category
 import com.example.uproject.domain.model.CategoryDocument
+import com.example.uproject.domain.model.Product
+import com.example.uproject.domain.model.ProductDocument
 import kotlinx.coroutines.tasks.await
 
 class FirebaseFirestoreDataSourceImpl: FirebaseFirestoreDataSource {
@@ -17,5 +19,15 @@ class FirebaseFirestoreDataSourceImpl: FirebaseFirestoreDataSource {
         if(documentSnapshot != null)
             listCategory = documentSnapshot.toObject(CategoryDocument::class.java)?.categoryList ?: emptyList()
         return listCategory
+    }
+
+    override suspend fun getListProducts(): List<Product> {
+        var listProduct = emptyList<Product>()
+        val documentSnapshot = dbReference.collection("Product")
+            .document("products").get().await()
+
+        if (documentSnapshot != null)
+            listProduct = documentSnapshot.toObject(ProductDocument::class.java)?.productList ?: emptyList()
+        return listProduct
     }
 }

@@ -16,6 +16,10 @@ class ProductsActivity : AppCompatActivity() {
         binding = ActivityProductsBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupProductsViewPager()
+
+        binding.btnBackProducts.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun setupProductsViewPager() {

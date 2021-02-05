@@ -1,20 +1,45 @@
 package com.example.uproject.ui.activities.home.category
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
 import coil.ImageLoader
 import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.example.uproject.common.utils.setStatusBarColor
-import com.example.uproject.data.local.db.category.CategoryEntity
+import com.example.uproject.core.Resource
+import com.example.uproject.data.firebase.home.FirebaseFirestoreDataSourceImpl
+import com.example.uproject.data.local.db.DulcekatDataBase
+import com.example.uproject.data.local.db.entity.CategoryEntity
+import com.example.uproject.data.local.db.entity.ProductEntity
+import com.example.uproject.data.local.source.LocalDataSourceImpl
 import com.example.uproject.databinding.ActivityCategoryBinding
+import com.example.uproject.domain.repository.DulcekatRepositoryImpl
+import com.example.uproject.ui.activities.home.details.DetailsProductActivity
+import com.example.uproject.ui.fragments.home.adapter.ProductListAdapter
+import com.example.uproject.ui.viewmodels.home.ProductViewModel
+import com.example.uproject.ui.viewmodels.home.factoryhome.HomeViewModelFactory
 
-class CategoryActivity : AppCompatActivity() {
+class CategoryActivity : AppCompatActivity(),ProductListAdapter.OnProductClickListener {
 
     private lateinit var binding: ActivityCategoryBinding
     private lateinit var categoryEntity: CategoryEntity
     private var colorRGB = 0
+
+    private val productAdapter   by lazy { ProductListAdapter(this, this) }
+
+    private val viewModel by viewModels<ProductViewModel>{
+        HomeViewModelFactory(
+            DulcekatRepositoryImpl(
+                LocalDataSourceImpl(DulcekatDataBase.getInstance(this)),
+                FirebaseFirestoreDataSourceImpl()
+            )
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +51,12 @@ class CategoryActivity : AppCompatActivity() {
             colorRGB       = intent.getIntExtra("colorRGB", 0)
         }
 
-        setupCategory()
+        binding.btnBackCategory.setOnClickListener {
+            onBackPressed()
+        }
 
+        setupCategory()
+        setupRecyclerView()
     }
 
     private fun setupCategory(){
@@ -47,6 +76,36 @@ class CategoryActivity : AppCompatActivity() {
         imageLoader.enqueue(request)
         cardCategorySupport.setCardBackgroundColor(colorRGB)
         setStatusBarColor(this, colorRGB)
+    }
+
+    private fun setupRecyclerView(){
+        binding.rvListProductCategory.apply {
+            layoutManager   = GridLayoutManager(applicationContext,2)
+            adapter         = productAdapter
+        }
+
+        viewModel.fetchListProductByCategory(categoryEntity.idCategory).observe(this, Observer {
+            it?.let { result ->
+                when(result){
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        val listInsumosProduct = result.data
+                        productAdapter.setData(listInsumosProduct)
+                    }
+                    is Resource.Failure -> {}
+                }
+            }
+        })
+
+    }
+
+    override fun onProductClicked(product: ProductEntity, colorRGB: Int) {
+        val productBundle = Bundle()
+        productBundle.putParcelable("product", product)
+        val intent = Intent(this, DetailsProductActivity::class.java)
+        intent.putExtras(productBundle)
+        intent.putExtra("colorRGB", colorRGB)
+        startActivity(intent)
     }
 
 

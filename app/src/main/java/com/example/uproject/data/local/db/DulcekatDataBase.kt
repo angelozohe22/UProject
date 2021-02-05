@@ -4,10 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.uproject.data.local.db.category.CategoryEntity
+import com.example.uproject.data.local.db.entity.CategoryEntity
+import com.example.uproject.data.local.db.entity.OrderByProductEntity
+import com.example.uproject.data.local.db.entity.OrderEntity
+import com.example.uproject.data.local.db.entity.ProductEntity
 
 @Database(
-    entities = [CategoryEntity::class],
+    entities = [CategoryEntity::class, ProductEntity::class, OrderByProductEntity::class, OrderEntity::class],
     version = 1
 )
 abstract class DulcekatDataBase: RoomDatabase() {

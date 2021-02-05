@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.cardview.widget.CardView
@@ -16,16 +17,13 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:cardCornerRadius="10dp">
-        
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/item_image_category"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerInParent="true" />
-        </RelativeLayout>
+
+        <ImageView
+            android:id="@+id/item_image_category"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_centerInParent="true" />
 
     </androidx.cardview.widget.CardView>
 
@@ -34,6 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:layout_gravity="center_horizontal"
         android:fontFamily="@font/googlesans_regular"
         android:text="@string/default_text"
         android:textSize="14sp"
@@ -42,4 +41,4 @@
         app:layout_constraintRight_toRightOf="@id/item_card_category"
         app:layout_constraintTop_toBottomOf="@id/item_card_category"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

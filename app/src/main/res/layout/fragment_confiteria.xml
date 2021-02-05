@@ -5,10 +5,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.home.products.fragments.confiteria.ConfiteriaFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_confiteria_product"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:padding="4dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"/>
 
 </FrameLayout>

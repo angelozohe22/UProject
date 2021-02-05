@@ -10,7 +10,7 @@
         android:id="@+id/title_bag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
         android:text="Bolsa "
         android:textSize="24sp"
@@ -19,9 +19,10 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_total_quantity_bag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="8dp"
         android:text="0 productos"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/title_bag"
@@ -30,9 +31,10 @@
         app:layout_constraintVertical_bias="1.0"/>
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/img_default_empty_bag_list"
+        android:id="@+id/img_default_empty_bag"
         android:layout_width="200dp"
         android:layout_height="200dp"
+        android:visibility="gone"
         android:background="@drawable/ic_list"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -41,14 +43,27 @@
         />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_default_empty_bag"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Lista vacia"
+        android:visibility="gone"
         android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="@id/img_default_empty_bag"
+        app:layout_constraintRight_toRightOf="@id/img_default_empty_bag"
+        app:layout_constraintTop_toBottomOf="@id/img_default_empty_bag"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_bag"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/title_total"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/img_default_empty_bag_list"/>
+        app:layout_constraintTop_toBottomOf="@id/title_bag" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_pay"
@@ -68,14 +83,16 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_total"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:text="Total"
         app:layout_constraintBottom_toTopOf="@id/btn_pay"
-        app:layout_constraintLeft_toLeftOf="@id/btn_pay"/>
+        app:layout_constraintLeft_toLeftOf="@id/btn_pay" />
 
     <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_total_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

@@ -2,7 +2,6 @@ package com.example.uproject.ui.fragments.home.adapter
 
 import android.graphics.Bitmap
 import android.graphics.Color
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,9 +14,8 @@ import coil.request.ImageRequest
 import coil.size.Size
 import coil.transform.Transformation
 import com.example.uproject.R
-import com.example.uproject.data.local.db.category.CategoryEntity
+import com.example.uproject.data.local.db.entity.CategoryEntity
 import com.example.uproject.databinding.ItemCategoryBinding
-import com.example.uproject.domain.model.Category
 
 class CategoryListAdapter(
     private val categoryClickListener: OnCategoryClickListener
@@ -78,8 +76,7 @@ class CategoryListAdapter(
                             }
                             return input
                         }
-                    })
-                    .build()
+                    }).build()
                 imageLoader.enqueue(request)
                 itemCardCategory.setOnClickListener {
                     categoryClickListener.onCategoryClicked(category, colorRGB)

@@ -23,11 +23,20 @@ class MySharePreferences(context: Context) {
         get() = prefs.getString("email","")
         set(value) = prefs.edit().putString("email", value).apply()
 
+    var flagGetDates: Int?
+        get() = prefs.getInt("flagGetDates",0)
+        set(value) = prefs.edit().putInt("flagGetDates", value!!).apply()
+
+    var flagOrder: Int?
+        get() = prefs.getInt("flagOrder",0)
+        set(value) = prefs.edit().putInt("flagOrder", value!!).apply()
+
     fun clear(){
         prefs.edit().remove("device_token").apply()
         prefs.edit().remove("username").apply()
         prefs.edit().remove("phone").apply()
         prefs.edit().remove("email").apply()
+        prefs.edit().remove("flagGetDates").apply()
     }
 
 }

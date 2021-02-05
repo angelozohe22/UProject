@@ -8,7 +8,9 @@ data class Product(
     val price       : Double,
     val quantity    : Int,
     val description : String,
-    val offer       : Int
+    val offer       : Int,
+    val isfavorite  : Int,
+    val _idcategory : Int
 ){
-    constructor():this("","","","",0.0,0,"",0)
+    constructor():this("","","","",0.0,0,"",0,0,0)
 }

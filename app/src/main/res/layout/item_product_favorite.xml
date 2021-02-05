@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="180dp"
+    android:id="@+id/card_container_favorite"
+    android:layout_width="170dp"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_margin="8dp"
+    android:layout_margin="4dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
     app:cardCornerRadius="10dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,15 +30,16 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="6dp"
                 android:layout_marginRight="6dp"
-                android:src="@drawable/avd_animation_heart_1"
+                android:src="@drawable/avd_animation_heart_2"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/item_image_favorite_product"
                 android:layout_width="0dp"
                 android:layout_height="95dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginLeft="6dp"
+                android:layout_marginRight="6dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintLeft_toLeftOf="parent"

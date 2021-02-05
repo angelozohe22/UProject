@@ -1,60 +1,88 @@
 package com.example.uproject.ui.activities.home.products.fragments.insumos
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.uproject.R
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.uproject.core.Resource
+import com.example.uproject.data.firebase.home.FirebaseFirestoreDataSourceImpl
+import com.example.uproject.data.local.db.DulcekatDataBase
+import com.example.uproject.data.local.db.entity.ProductEntity
+import com.example.uproject.data.local.source.LocalDataSourceImpl
+import com.example.uproject.databinding.FragmentInsumosBinding
+import com.example.uproject.domain.repository.DulcekatRepositoryImpl
+import com.example.uproject.ui.activities.home.details.DetailsProductActivity
+import com.example.uproject.ui.fragments.home.adapter.ProductListAdapter
+import com.example.uproject.ui.viewmodels.home.ProductViewModel
+import com.example.uproject.ui.viewmodels.home.factoryhome.HomeViewModelFactory
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class InsumosFragment : Fragment(), ProductListAdapter.OnProductClickListener {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [InsumosFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class InsumosFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentInsumosBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private val productAdapter   by lazy { ProductListAdapter(this, requireContext()) }
+
+    private val viewModel by activityViewModels<ProductViewModel>{
+        HomeViewModelFactory(
+            DulcekatRepositoryImpl(
+                LocalDataSourceImpl(DulcekatDataBase.getInstance(requireContext())),
+                FirebaseFirestoreDataSourceImpl()
+            )
+        )
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_insumos, container, false)
+    ): View {
+        _binding = FragmentInsumosBinding.inflate(layoutInflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment InsumosFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            InsumosFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+         setupRecyclerView()
+    }
+
+    private fun setupRecyclerView(){
+        binding.rvListInsumosProduct.apply {
+            layoutManager   = GridLayoutManager(requireContext(),2)
+            adapter         = productAdapter
+        }
+
+        viewModel.fetchListProductByCategory(0).observe(viewLifecycleOwner, Observer {
+            it?.let { result ->
+                when(result){
+                    is Resource.Loading -> {}
+                    is Resource.Success -> {
+                        val listInsumosProduct = result.data
+                        productAdapter.setData(listInsumosProduct)
+                    }
+                    is Resource.Failure -> TODO()
                 }
             }
+        })
     }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onProductClicked(product: ProductEntity, colorRGB: Int) {
+        val productBundle = Bundle()
+        productBundle.putParcelable("product", product)
+        val intent = Intent(requireActivity(), DetailsProductActivity::class.java)
+        intent.putExtras(productBundle)
+        intent.putExtra("colorRGB", colorRGB)
+        startActivity(intent)
+    }
+
 }
