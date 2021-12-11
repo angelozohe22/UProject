@@ -2,18 +2,17 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'com.google.gms.google-services'
     id 'kotlin-parcelize'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.2"
+
+    compileSdk 31
 
     defaultConfig {
         applicationId "com.example.uproject"
-        minSdkVersion 21
-        targetSdkVersion 30
+        minSdk 21
+        targetSdk 31
         versionCode 1
         versionName "1.0"
 
@@ -33,9 +32,8 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
-    buildFeatures {
-        viewBinding = true
+    buildFeatures{
+        viewBinding true
     }
 
 }
