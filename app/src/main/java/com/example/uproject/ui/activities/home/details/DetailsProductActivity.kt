@@ -3,18 +3,15 @@ package com.example.uproject.ui.activities.home.details
 import android.content.Intent
 import android.graphics.Paint
 import android.graphics.drawable.AnimatedVectorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import coil.load
@@ -34,11 +31,7 @@ import com.example.uproject.domain.repository.DulcekatRepositoryImpl
 import com.example.uproject.ui.fragments.home.adapter.ProductListAdapter
 import com.example.uproject.ui.viewmodels.home.ProductDetailsViewModel
 import com.example.uproject.ui.viewmodels.home.factoryhome.HomeViewModelFactory
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.*
 import kotlin.math.roundToInt
 
@@ -49,7 +42,7 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
     private val detailsProductAdapter by lazy { ProductListAdapter(this, this) }
 
     private var colorRGB = 0
-    private var currentQuantity = 0
+    private var currentQuantity = 1
 
     private val viewModel by viewModels<ProductDetailsViewModel>{
         HomeViewModelFactory(
@@ -177,12 +170,10 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
     }
 
     private fun setupQuantity(){
-        val tvQuantityProduct   = binding.tvQuantityProduct
-        val btnIncreaseQuantity = binding.btnIncreaseQuantity
-        val btnDecreaseQuantity = binding.btnDecreaseQuantity
+        val tvQuantityProduct       = binding.tvQuantityProduct
+        val btnIncreaseQuantity  = binding.btnIncreaseQuantity
+        val btnDecreaseQuantity  = binding.btnDecreaseQuantity
         val btnAddBagProduct    = binding.btnAddBagProduct
-
-        currentQuantity = viewModel.quantity
 
         btnDecreaseQuantity.apply {
             isEnabled   = false
@@ -191,41 +182,28 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
 
         if(productEntity.quantity > 0){
 
-            tvQuantityProduct.text = (if(viewModel.quantity<10) "0" else "").plus(viewModel.quantity)
-
             btnIncreaseQuantity.setOnClickListener {
                 viewModel.increaseQuantity()
-                btnDecreaseQuantity.apply {
-                    isEnabled   = true
-                    setBackgroundResource(R.drawable.btn_corner_quantity)
-                }
-                tvQuantityProduct.text = (if (viewModel.quantity < 10) "0" else "").plus(viewModel.quantity)
-                currentQuantity = tvQuantityProduct.text.toString().toInt()
-                if(currentQuantity == productEntity.quantity){
-                    btnIncreaseQuantity.apply {
-                        isEnabled   = false
-                        setBackgroundResource(R.drawable.btn_corner_quantity_disable)
-                    }
-                }
             }
 
             btnDecreaseQuantity.setOnClickListener {
                 viewModel.decreaseQuantity()
-                tvQuantityProduct.text = (if (viewModel.quantity < 10) "0" else "").plus(viewModel.quantity)
-                currentQuantity = tvQuantityProduct.text.toString().toInt()
-                if(currentQuantity == 1){
-                    btnDecreaseQuantity.apply {
-                        isEnabled   = false
-                        setBackgroundResource(R.drawable.btn_corner_quantity_disable)
-                    }
-                }
-                if(currentQuantity != productEntity.quantity){
-                    btnIncreaseQuantity.apply {
-                        isEnabled   = true
-                        setBackgroundResource(R.drawable.btn_corner_quantity)
-                    }
-                }
             }
+
+            viewModel.count.observe(this, Observer { count->
+                tvQuantityProduct.text = (if(count<10) "0" else "").plus(count)
+                btnIncreaseQuantity.apply {
+                    isEnabled = count != productEntity.quantity
+                    if(isEnabled) setBackgroundResource(R.drawable.btn_corner_quantity)
+                    else setBackgroundResource(R.drawable.btn_corner_quantity_disable)
+                }
+                btnDecreaseQuantity.apply {
+                    isEnabled = count>1
+                    if(isEnabled) setBackgroundResource(R.drawable.btn_corner_quantity)
+                    else setBackgroundResource(R.drawable.btn_corner_quantity_disable)
+                }
+                currentQuantity = count
+            })
 
         }else{
             tvQuantityProduct.text = "00"
@@ -270,8 +248,7 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
         val btnAddBagProduct  = binding.btnAddBagProduct
 
         val idProduct = productEntity.idproduct
-        val price:Double
-        price = if(productEntity.offer != 0){
+        val price = if(productEntity.offer != 0){
             val discountPrice   = productEntity.price - productEntity.price*productEntity.offer/100
             (discountPrice * 100.0).roundToInt() / 100.0
         }else productEntity.price

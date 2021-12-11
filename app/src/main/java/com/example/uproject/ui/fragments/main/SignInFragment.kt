@@ -2,8 +2,11 @@ package com.example.uproject.ui.fragments.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
@@ -19,7 +22,10 @@ import com.example.uproject.ui.viewmodels.auth.factory.AuthViewModelFactory
 import com.example.uproject.common.utils.*
 import com.example.uproject.ui.activities.home.HomeActivity
 
-class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in) {
+class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in)
+
+    private var _binding: FragmentSignInBinding? = null
+    private val binding get() = _binding!!
     
     private val viewModel by activityViewModels<SignInViewModel> {
         AuthViewModelFactory(
@@ -29,9 +35,13 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
         )
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentSignInBinding.bind(view)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentSignInBinding.inflate(layoutInflater, container, false)
+
         setStatusBarColor(requireActivity())
         setNavigationBarColor(requireActivity())
 
@@ -51,7 +61,9 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
         }
 
         binding.lblFromSignInTo.apply{
-            val lblQuestion = getString(R.string.lbl_from_logIn_to_question).getColoredSpanned(getString(R.string.color_Gray_Web))
+            val lblQuestion = getString(R.string.lbl_from_logIn_to_question).
+
+            getColoredSpanned(getString(R.string.color_Gray_Web))
             val lblAnswer   = getString(R.string.lbl_from_logIn_to_answer).getColoredSpanned(getString(R.string.color_Brown_Sugar))
             text = HtmlCompat.fromHtml("$lblQuestion $lblAnswer",HtmlCompat.FROM_HTML_MODE_LEGACY)
 
@@ -60,6 +72,12 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
             }
         }
         textFieldsSignInValidations()
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun textFieldsSignInValidations(){
@@ -165,6 +183,11 @@ class SignInFragment : BaseFragment<FragmentSignInBinding>(R.layout.fragment_sig
             cetEmailSignIn.clearFocus()
             cetPasswordSignIn.clearFocus()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }

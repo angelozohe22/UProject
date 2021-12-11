@@ -14,9 +14,11 @@ class ProductDetailsViewModel(
     private val dulcekatRepository: DulcekatRepository
 ): ViewModel(){
 
-    var quantity = 1
-    fun increaseQuantity(){ quantity++ }
-    fun decreaseQuantity(){ quantity-- }
+    private val _count = MutableLiveData<Int>(1)
+    val count: LiveData<Int> get() = _count
+
+    fun increaseQuantity(){ _count.value = _count.value?.plus(1) ?: 1 }
+    fun decreaseQuantity(){ _count.value = _count.value?.minus(1) ?: 1 }
 
     private val _orders = MutableLiveData<List<OrderEntity>>()
     val orders: LiveData<List<OrderEntity>> get() = _orders

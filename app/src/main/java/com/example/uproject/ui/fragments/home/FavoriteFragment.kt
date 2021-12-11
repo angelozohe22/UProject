@@ -42,13 +42,13 @@ class FavoriteFragment : Fragment(), ProductListAdapter.OnProductClickListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentFavoriteBinding.inflate(layoutInflater, container, false)
+        setupRecycler()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupRecycler()
     }
 
     private fun setupRecycler() {

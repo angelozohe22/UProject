@@ -36,6 +36,13 @@ class RecoverPasswordFragment: DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = DialogForgotPasswordBinding.inflate(inflater, container, false)
+
+        binding.btnRestorePassword.apply{
+            isEnabled = false
+            setBackgroundResource(R.drawable.btn_corner_dissable)
+        }
+        textFieldForgotPassValidation()
+
         return binding.root
     }
 
@@ -47,11 +54,6 @@ class RecoverPasswordFragment: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.btnRestorePassword.apply{
-            isEnabled = false
-            setBackgroundResource(R.drawable.btn_corner_dissable)
-        }
-        textFieldForgotPassValidation()
     }
 
     private fun textFieldForgotPassValidation(){

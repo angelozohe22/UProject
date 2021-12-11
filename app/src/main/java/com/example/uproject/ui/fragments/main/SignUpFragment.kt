@@ -1,8 +1,11 @@
 package com.example.uproject.ui.fragments.main
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.text.HtmlCompat
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
@@ -17,7 +20,10 @@ import com.example.uproject.ui.viewmodels.auth.SignUpViewModel
 import com.example.uproject.ui.viewmodels.auth.factory.AuthViewModelFactory
 import com.example.uproject.common.utils.*
 
-class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sign_up) {
+class SignUpFragment : Fragment() { //BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sign_up)
+
+    private var _binding: FragmentSignUpBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel by activityViewModels<SignUpViewModel> {
         AuthViewModelFactory(
@@ -27,9 +33,13 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sig
         )
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        _binding = FragmentSignUpBinding.bind(view)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        _binding = FragmentSignUpBinding.inflate(layoutInflater, container, false)
+
         setStatusBarColor(requireActivity())
         setNavigationBarColor(requireActivity())
 
@@ -55,6 +65,13 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sig
             }
         }
         textFieldSignUpValidations()
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
     }
 
     private fun textFieldSignUpValidations(){
@@ -186,4 +203,8 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sig
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }

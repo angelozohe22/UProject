@@ -3,7 +3,6 @@ package com.example.uproject.ui.fragments.home
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,7 +25,7 @@ import com.example.uproject.ui.viewmodels.home.BagViewModel
 import com.example.uproject.ui.viewmodels.home.factoryhome.HomeViewModelFactory
 import kotlin.math.roundToInt
 
-class BagFragment : Fragment(), BagAdapter.OnProductBagClickListener {
+class BagFragment : androidx.fragment.app.Fragment(), BagAdapter.OnProductBagClickListener {
 
     private var _binding: FragmentBagBinding? = null
     private val binding get() = _binding!!
@@ -49,13 +48,13 @@ class BagFragment : Fragment(), BagAdapter.OnProductBagClickListener {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentBagBinding.inflate(layoutInflater, container, false)
+        setupRecycler()
+        setupListener()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecycler()
-        setupListener()
     }
 
     private fun setupRecycler() {

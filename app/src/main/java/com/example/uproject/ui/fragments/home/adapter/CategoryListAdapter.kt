@@ -72,6 +72,7 @@ class CategoryListAdapter(
                                 Color.colorToHSV(colorRGB, hsv)
                                 hsv[1] *= 0.7f
                                 colorRGB = Color.HSVToColor(hsv)
+                                println("color RGB -> $colorRGB")
                                 itemCardCategory.setCardBackgroundColor(colorRGB)
                             }
                             return input

@@ -141,3 +141,7 @@ fun EditText.onRightDrawableClicked(onClicked: (view: EditText) -> Unit) {
         hasConsumed
     }
 }
+
+fun Fragment.hideKeyboardDialog(){
+    requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN)
+}

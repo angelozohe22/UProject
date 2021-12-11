@@ -6,14 +6,12 @@ import com.google.firebase.auth.FirebaseAuth
 class FirebaseAuth private constructor() {
 
     companion object{
-        private var INSTANCE: FirebaseAuth? = null
-        fun getInstance(): FirebaseAuth{
-            val tempInstance = INSTANCE
-            if(tempInstance != null) return tempInstance
-            val authInstance = FIREBASE_AUTH
-            INSTANCE = authInstance
-            return authInstance
-        }
+        @Volatile
+        private var instance: FirebaseAuth? = null
+        fun getInstance(): FirebaseAuth =
+            instance ?: synchronized(this){
+                instance ?: FIREBASE_AUTH.also { instance = it }
+            }
     }
 
 }

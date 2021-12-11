@@ -58,11 +58,6 @@ class HomeFragment : Fragment(),
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         slideAdapter = SlideAdapter(binding.bannerOffers)
 
@@ -79,6 +74,16 @@ class HomeFragment : Fragment(),
             val intent = Intent(requireActivity(), ProductsActivity::class.java)
             startActivity(intent)
         }
+
+
+
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+
 
     }
 
