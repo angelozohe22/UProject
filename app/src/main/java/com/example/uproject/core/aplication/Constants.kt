@@ -7,9 +7,11 @@ object Constants {
 
     //FirebaseAuth
     val FIREBASE_AUTH = FirebaseAuth.getInstance()
+    val authInstance = FirebaseAuth.getInstance()
 
     //Firebase Firestore
     val FIREBASE_FIRESTORE = FirebaseFirestore.getInstance()
+    val storeInstance = FirebaseFirestore.getInstance()
 
     //Firebase Collections
     const val USERS = "Users"

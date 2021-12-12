@@ -4,14 +4,16 @@ import android.util.Log
 import com.example.uproject.common.FirebaseAuth
 import com.example.uproject.common.FirebaseFirestore
 import com.example.uproject.core.aplication.Constants.USERS
+import com.example.uproject.core.aplication.Constants.authInstance
+import com.example.uproject.core.aplication.Constants.storeInstance
 import com.example.uproject.core.aplication.preferences
 import com.example.uproject.domain.model.User
 import kotlinx.coroutines.tasks.await
 
 class RemoteAuthDataSourceImpl: RemoteAuthDataSource {
 
-    private val auth by lazy { FirebaseAuth.getInstance() }
-    private val dbReference by lazy { FirebaseFirestore.getInstance() }
+    private val auth by lazy { authInstance }
+    private val dbReference by lazy { storeInstance }
     private var _isSuccessful: Boolean = false
 
     override suspend fun signInWithEmailAndPassword(email: String, password: String): Boolean {
