@@ -1,6 +1,6 @@
 package com.example.uproject.domain.repository
 
-import com.example.uproject.data.firebase.home.FirebaseFirestoreDataSource
+import com.example.uproject.data.Remote.home.RemoteFirestoreDataSource
 import com.example.uproject.data.local.db.entity.*
 import com.example.uproject.data.local.source.LocalDataSource
 import com.example.uproject.domain.model.Category
@@ -8,7 +8,7 @@ import com.example.uproject.domain.model.Product
 
 class DulcekatRepositoryImpl(
     private val localDataSource: LocalDataSource,
-    private val firebaseFirestoreDataSource: FirebaseFirestoreDataSource
+    private val remoteFirestoreDataSource: RemoteFirestoreDataSource
 ): DulcekatRepository {
 
     override suspend fun insertCategory(category: CategoryEntity) {
@@ -72,10 +72,10 @@ class DulcekatRepositoryImpl(
     }
 
     override suspend fun getListCategoryFirebase(): List<Category> {
-        return firebaseFirestoreDataSource.getListCategory()
+        return remoteFirestoreDataSource.getListCategory()
     }
 
     override suspend fun getListProductFirebase(): List<Product> {
-        return firebaseFirestoreDataSource.getListProducts()
+        return remoteFirestoreDataSource.getListProducts()
     }
 }

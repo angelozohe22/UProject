@@ -5,7 +5,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
@@ -13,15 +12,13 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.uproject.R
 import com.example.uproject.common.utils.makeClearableEditText
 import com.example.uproject.core.Resource
 import com.example.uproject.core.aplication.ctx
-import com.example.uproject.data.firebase.home.FirebaseFirestoreDataSourceImpl
+import com.example.uproject.data.Remote.home.RemoteFirestoreDataSourceImpl
 import com.example.uproject.data.local.db.DulcekatDataBase
 import com.example.uproject.data.local.db.entity.ProductEntity
 import com.example.uproject.data.local.source.LocalDataSourceImpl
-import com.example.uproject.databinding.ActivityHomeBinding
 import com.example.uproject.databinding.ActivitySearchBinding
 import com.example.uproject.domain.repository.DulcekatRepositoryImpl
 import com.example.uproject.ui.activities.home.details.DetailsProductActivity
@@ -38,7 +35,7 @@ class SearchActivity : AppCompatActivity(), ProductListAdapter.OnProductClickLis
         HomeViewModelFactory(
             DulcekatRepositoryImpl(
                 LocalDataSourceImpl(DulcekatDataBase.getInstance(this)),
-                FirebaseFirestoreDataSourceImpl()
+                RemoteFirestoreDataSourceImpl()
             )
         )
     }

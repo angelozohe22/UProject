@@ -9,7 +9,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.uproject.R
 import com.example.uproject.databinding.DialogForgotPasswordBinding
-import com.example.uproject.data.firebase.auth.FirebaseAuthDataSourceImpl
+import com.example.uproject.data.Remote.auth.RemoteAuthDataSourceImpl
 import com.example.uproject.domain.auth.AuthRepositoryImpl
 import com.example.uproject.ui.viewmodels.auth.RestorePasswordViewModel
 import com.example.uproject.ui.viewmodels.auth.factory.AuthViewModelFactory
@@ -25,7 +25,7 @@ class RecoverPasswordFragment: DialogFragment() {
     private val viewModel by activityViewModels<RestorePasswordViewModel>{
         AuthViewModelFactory(
             AuthRepositoryImpl(
-                FirebaseAuthDataSourceImpl()
+                RemoteAuthDataSourceImpl()
             )
         )
     }

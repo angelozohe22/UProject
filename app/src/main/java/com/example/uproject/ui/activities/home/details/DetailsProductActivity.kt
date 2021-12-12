@@ -20,7 +20,7 @@ import com.example.uproject.common.utils.setStatusBarColor
 import com.example.uproject.core.Resource
 import com.example.uproject.core.aplication.ctx
 import com.example.uproject.core.aplication.preferences
-import com.example.uproject.data.firebase.home.FirebaseFirestoreDataSourceImpl
+import com.example.uproject.data.Remote.home.RemoteFirestoreDataSourceImpl
 import com.example.uproject.data.local.db.DulcekatDataBase
 import com.example.uproject.data.local.db.entity.OrderByProductEntity
 import com.example.uproject.data.local.db.entity.OrderEntity
@@ -48,7 +48,7 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
         HomeViewModelFactory(
             DulcekatRepositoryImpl(
                 LocalDataSourceImpl(DulcekatDataBase.getInstance(this)),
-                FirebaseFirestoreDataSourceImpl()
+                RemoteFirestoreDataSourceImpl()
             )
         )
     }

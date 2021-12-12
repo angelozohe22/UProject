@@ -1,4 +1,4 @@
-package com.example.uproject.data.firebase.auth
+package com.example.uproject.data.Remote.auth
 
 import android.util.Log
 import com.example.uproject.common.FirebaseAuth
@@ -8,7 +8,7 @@ import com.example.uproject.core.aplication.preferences
 import com.example.uproject.domain.model.User
 import kotlinx.coroutines.tasks.await
 
-class FirebaseAuthDataSourceImpl: FirebaseAuthDataSource {
+class RemoteAuthDataSourceImpl: RemoteAuthDataSource {
 
     private val auth by lazy { FirebaseAuth.getInstance() }
     private val dbReference by lazy { FirebaseFirestore.getInstance() }
@@ -17,8 +17,8 @@ class FirebaseAuthDataSourceImpl: FirebaseAuthDataSource {
     override suspend fun signInWithEmailAndPassword(email: String, password: String): Boolean {
             auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful){
-                    val firebaseUser = auth.currentUser
-                    firebaseUser?.let { user ->
+                    val user = auth.currentUser
+                    user?.let { user ->
                         preferences.deviceToken = user.uid
                         if(user.isEmailVerified) { _isSuccessful = true }
                         else{ _isSuccessful = false; auth.signOut() }
@@ -49,15 +49,15 @@ class FirebaseAuthDataSourceImpl: FirebaseAuthDataSource {
     }
 
     override suspend fun signUpWithEmailAndPassword( username: String, phone: String, email: String, password: String): Boolean {
-        var newFirebaseUser = auth.currentUser
+        var user = auth.currentUser
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
-            newFirebaseUser = auth.currentUser
-            _isSuccessful = task.isSuccessful && newFirebaseUser != null
+            user = auth.currentUser
+            _isSuccessful = task.isSuccessful && user != null
         }.await()
 
         if(_isSuccessful){
-            newFirebaseUser?.sendEmailVerification()?.await()
-            val id = newFirebaseUser?.uid ?: "0"
+            user?.sendEmailVerification()?.await()
+            val id = user?.uid ?: "0"
             val user = User(id, username, phone, email)
             dbReference.collection(USERS).document(id).set(user).addOnCompleteListener {
                 if(it.isSuccessful){

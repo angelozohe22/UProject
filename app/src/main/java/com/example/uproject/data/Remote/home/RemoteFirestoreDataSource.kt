@@ -1,9 +1,9 @@
-package com.example.uproject.data.firebase.home
+package com.example.uproject.data.Remote.home
 
 import com.example.uproject.domain.model.Category
 import com.example.uproject.domain.model.Product
 
-interface FirebaseFirestoreDataSource {
+interface RemoteFirestoreDataSource {
 
     //Home
     //category

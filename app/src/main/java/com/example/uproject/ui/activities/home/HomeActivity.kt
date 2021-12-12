@@ -15,7 +15,7 @@ import com.example.uproject.R
 import com.example.uproject.common.FirebaseAuth
 import com.example.uproject.common.utils.setNavigationBarColor
 import com.example.uproject.core.aplication.preferences
-import com.example.uproject.data.firebase.home.FirebaseFirestoreDataSourceImpl
+import com.example.uproject.data.Remote.home.RemoteFirestoreDataSourceImpl
 import com.example.uproject.data.local.db.DulcekatDataBase
 import com.example.uproject.data.local.source.LocalDataSourceImpl
 import com.example.uproject.databinding.ActivityHomeBinding
@@ -41,7 +41,7 @@ class HomeActivity : AppCompatActivity() {
         HomeViewModelFactory(
             DulcekatRepositoryImpl(
                 LocalDataSourceImpl(DulcekatDataBase.getInstance(this)),
-                FirebaseFirestoreDataSourceImpl()
+                RemoteFirestoreDataSourceImpl()
             )
         )
     }

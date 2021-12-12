@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import coil.ImageLoader
@@ -12,7 +11,7 @@ import coil.decode.SvgDecoder
 import coil.request.ImageRequest
 import com.example.uproject.common.utils.setStatusBarColor
 import com.example.uproject.core.Resource
-import com.example.uproject.data.firebase.home.FirebaseFirestoreDataSourceImpl
+import com.example.uproject.data.Remote.home.RemoteFirestoreDataSourceImpl
 import com.example.uproject.data.local.db.DulcekatDataBase
 import com.example.uproject.data.local.db.entity.CategoryEntity
 import com.example.uproject.data.local.db.entity.ProductEntity
@@ -36,7 +35,7 @@ class CategoryActivity : AppCompatActivity(),ProductListAdapter.OnProductClickLi
         HomeViewModelFactory(
             DulcekatRepositoryImpl(
                 LocalDataSourceImpl(DulcekatDataBase.getInstance(this)),
-                FirebaseFirestoreDataSourceImpl()
+                RemoteFirestoreDataSourceImpl()
             )
         )
     }

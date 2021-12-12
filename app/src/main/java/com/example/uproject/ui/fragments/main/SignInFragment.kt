@@ -12,9 +12,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.uproject.R
-import com.example.uproject.base.BaseFragment
 import com.example.uproject.core.Resource
-import com.example.uproject.data.firebase.auth.FirebaseAuthDataSourceImpl
+import com.example.uproject.data.Remote.auth.RemoteAuthDataSourceImpl
 import com.example.uproject.databinding.FragmentSignInBinding
 import com.example.uproject.domain.auth.AuthRepositoryImpl
 import com.example.uproject.ui.viewmodels.auth.SignInViewModel
@@ -30,7 +29,7 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
     private val viewModel by activityViewModels<SignInViewModel> {
         AuthViewModelFactory(
             AuthRepositoryImpl(
-                FirebaseAuthDataSourceImpl()
+                RemoteAuthDataSourceImpl()
             )
         )
     }

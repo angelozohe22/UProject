@@ -2,7 +2,6 @@ package com.example.uproject.ui.fragments.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.uproject.R
 import com.example.uproject.core.Resource
 import com.example.uproject.core.aplication.ctx
-import com.example.uproject.data.firebase.home.FirebaseFirestoreDataSourceImpl
+import com.example.uproject.data.Remote.home.RemoteFirestoreDataSourceImpl
 import com.example.uproject.data.local.db.DulcekatDataBase
 import com.example.uproject.data.local.db.entity.BagProductEntity
 import com.example.uproject.data.local.source.LocalDataSourceImpl
@@ -38,7 +37,7 @@ class BagFragment : androidx.fragment.app.Fragment(), BagAdapter.OnProductBagCli
         HomeViewModelFactory(
             DulcekatRepositoryImpl(
                 LocalDataSourceImpl(DulcekatDataBase.getInstance(requireContext())),
-                FirebaseFirestoreDataSourceImpl()
+                RemoteFirestoreDataSourceImpl()
             )
         )
     }

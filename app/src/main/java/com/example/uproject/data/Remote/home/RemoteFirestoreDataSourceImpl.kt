@@ -1,4 +1,4 @@
-package com.example.uproject.data.firebase.home
+package com.example.uproject.data.Remote.home
 
 import com.example.uproject.common.FirebaseFirestore
 import com.example.uproject.domain.model.Category
@@ -7,7 +7,7 @@ import com.example.uproject.domain.model.Product
 import com.example.uproject.domain.model.ProductDocument
 import kotlinx.coroutines.tasks.await
 
-class FirebaseFirestoreDataSourceImpl: FirebaseFirestoreDataSource {
+class RemoteFirestoreDataSourceImpl: RemoteFirestoreDataSource {
 
     private val dbReference =  FirebaseFirestore.getInstance()
 
