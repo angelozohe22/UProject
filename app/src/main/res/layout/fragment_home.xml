@@ -6,79 +6,137 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+<!--    <androidx.appcompat.widget.LinearLayoutCompat-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:paddingBottom="10dp"-->
+<!--        android:background="@color/color_Red_Pigment"-->
+<!--        tools:context=".ui.modules.home.HomeFragment">-->
+
+<!--        <View-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"/>-->
+
+<!--    </androidx.appcompat.widget.LinearLayoutCompat>-->
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:paddingBottom="10dp"
-        tools:context=".ui.fragments.home.HomeFragment">
+        tools:context=".ui.modules.home.HomeFragment">
 
-        <View
-            android:id="@+id/view_search_support"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/background_search"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+<!--        <View-->
+<!--            android:id="@+id/view_search_support"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:background="@drawable/background_search"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"/>-->
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginRight="32dp"
-            app:cardCornerRadius="10dp"
-            android:elevation="5dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+<!--        <androidx.cardview.widget.CardView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="33dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:layout_marginLeft="32dp"-->
+<!--            android:layout_marginRight="32dp"-->
+<!--            app:cardCornerRadius="10dp"-->
+<!--            android:elevation="5dp"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent">-->
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/searchView_container"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                android:id="@+id/searchView_container"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent">-->
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/ic_search"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    />
+<!--                <androidx.appcompat.widget.AppCompatImageView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="10dp"-->
+<!--                    android:src="@drawable/ic_search"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                    />-->
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/search_message"
-                    android:textSize="14dp"
-                    android:fontFamily="@font/googlesans_regular"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+<!--                <androidx.appcompat.widget.AppCompatTextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="@string/search_message"-->
+<!--                    android:textSize="14dp"-->
+<!--                    android:fontFamily="@font/googlesans_regular"-->
+<!--                    app:layout_constraintLeft_toLeftOf="parent"-->
+<!--                    app:layout_constraintRight_toRightOf="parent"-->
+<!--                    app:layout_constraintTop_toTopOf="parent"-->
+<!--                    app:layout_constraintBottom_toBottomOf="parent"/>-->
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
 
-        </androidx.cardview.widget.CardView>
+<!--        </androidx.cardview.widget.CardView>-->
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/title_category"
+        android:textSize="20sp"
+        android:fontFamily="@font/googlesans_bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/progress_category"
+            android:layout_width="match_parent"
+            android:layout_height="112dp"
+            android:layout_marginTop="8dp"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/title_category"
-            android:textSize="20sp"
-            android:fontFamily="@font/googlesans_bold"
-            app:layout_constraintTop_toBottomOf="@id/view_search_support"
-            app:layout_constraintLeft_toLeftOf="parent"/>
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_category">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    layout="@layout/placeholder_item_category" />
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    layout="@layout/placeholder_item_category" />
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    layout="@layout/placeholder_item_category" />
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    layout="@layout/placeholder_item_category" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list_category"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="112dp"
             android:layout_marginTop="8dp"
             android:layout_marginRight="16dp"
             android:overScrollMode="never"
@@ -86,41 +144,41 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_category" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/title_offers"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/title_offers"
-            android:textSize="20sp"
-            android:fontFamily="@font/googlesans_bold"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_list_category"/>
+<!--        <androidx.appcompat.widget.AppCompatTextView-->
+<!--            android:id="@+id/title_offers"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginLeft="16dp"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:text="@string/title_offers"-->
+<!--            android:textSize="20sp"-->
+<!--            android:fontFamily="@font/googlesans_bold"-->
+<!--            app:layout_constraintLeft_toLeftOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/rv_list_category"/>-->
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/banner_offers"
-            android:layout_width="0dp"
-            android:layout_height="200dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="16dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            app:layout_constraintLeft_toLeftOf="@id/title_offers"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/title_offers" />
+<!--        <androidx.viewpager2.widget.ViewPager2-->
+<!--            android:id="@+id/banner_offers"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:layout_marginTop="8dp"-->
+<!--            android:layout_marginRight="16dp"-->
+<!--            android:paddingLeft="30dp"-->
+<!--            android:paddingRight="30dp"-->
+<!--            app:layout_constraintLeft_toLeftOf="@id/title_offers"-->
+<!--            app:layout_constraintRight_toRightOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/title_offers" />-->
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_some_products"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="36dp"
             android:text="@string/title_some_products"
             android:textSize="20sp"
             android:fontFamily="@font/googlesans_bold"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/banner_offers"/>
+            app:layout_constraintTop_toBottomOf="@id/rv_list_category"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_see_all"
@@ -134,11 +192,47 @@
             app:layout_constraintTop_toTopOf="@id/title_some_products"
             app:layout_constraintBottom_toBottomOf="@id/title_some_products"/>
 
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/progress_product"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_some_products">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="4"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    layout="@layout/placeholder_item_product" />
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    layout="@layout/placeholder_item_product" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_list_product"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
             android:overScrollMode="never"
             app:layout_constraintLeft_toLeftOf="@id/title_some_products"
             app:layout_constraintTop_toBottomOf="@id/title_some_products"

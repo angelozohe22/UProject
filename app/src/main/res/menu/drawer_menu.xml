@@ -6,10 +6,10 @@
             android:icon="@drawable/ic_home_outline"
             android:title="@string/menuHome"/>
 
-        <item
-            android:id="@+id/navigation_favorite"
-            android:icon="@drawable/ic_wishlist_outline"
-            android:title="@string/menuFavorite"/>
+<!--        <item-->
+<!--            android:id="@+id/navigation_favorite"-->
+<!--            android:icon="@drawable/ic_wishlist_outline"-->
+<!--            android:title="@string/menuFavorite"/>-->
 
         <item
             android:id="@+id/navigation_bag"
@@ -35,10 +35,6 @@
                 android:icon="@drawable/ic_about_us"
                 android:title="@string/menuAboutUs"/>
 
-            <item
-                android:id="@+id/sign_out"
-                android:icon="@drawable/ic_sign_out"
-                android:title="@string/menuSignOut"/>
             </group>
         </menu>
 

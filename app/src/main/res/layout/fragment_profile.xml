@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.home.ProfileFragment">
+    tools:context=".ui.modules.profile.ProfileFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title_profile"
@@ -101,4 +101,20 @@
             android:textColor="@color/color_Gray_Web" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_add_bag_product"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/btn_details_bag"
+        android:text="Cerrar sesión"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textColor="@color/color_White"
+        android:fontFamily="@font/googlesans_bold"
+        app:layout_constraintLeft_toLeftOf="@id/ctv_phone_profile"
+        app:layout_constraintRight_toRightOf="@id/ctv_phone_profile"
+        app:layout_constraintTop_toBottomOf="@id/ctv_phone_profile"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

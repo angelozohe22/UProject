@@ -6,7 +6,7 @@
     app:startDestination="@id/mainFragment">
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.uproject.ui.fragments.main.MainFragment"
+        android:name="com.example.uproject.ui.login.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" >
         <action
@@ -26,7 +26,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInFragment"
-        android:name="com.example.uproject.ui.fragments.main.SignInFragment"
+        android:name="com.example.uproject.ui.login.signin.SignInFragment"
         android:label="fragment_sign_in"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -35,12 +35,12 @@
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
-        android:name="com.example.uproject.ui.fragments.main.SignUpFragment"
+        android:name="com.example.uproject.ui.login.signup.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" />
     <activity
         android:id="@+id/homeActivity"
-        android:name="com.example.uproject.ui.activities.home.HomeActivity"
+        android:name="com.example.uproject.ui.modules.home.HomeActivity"
         android:label="activity_home"
         tools:layout="@layout/activity_home" />
 </navigation>

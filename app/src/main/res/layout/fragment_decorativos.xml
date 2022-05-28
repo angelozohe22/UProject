@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.home.products.fragments.decorativos.DecorativosFragment">
+    tools:context=".ui.modules.home.products.fragments.decorativos.DecorativosFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_list_decorativos_product"

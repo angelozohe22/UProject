@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.home.details.DetailsProductActivity">
+    tools:context=".ui.modules.home.details.DetailsProductActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_details_product_support"
@@ -38,6 +38,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
                 android:padding="10dp"
+                android:visibility="gone"
                 android:src="@drawable/avd_animation_heart_1"
                 android:background="@drawable/background_button_back"
                 app:layout_constraintRight_toRightOf="parent"

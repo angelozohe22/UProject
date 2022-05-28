@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.home.search.SearchActivity">
+    tools:context=".ui.modules.home.search.SearchActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/search_view_container"

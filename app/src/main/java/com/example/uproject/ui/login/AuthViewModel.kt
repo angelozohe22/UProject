@@ -1,0 +1,45 @@
+package com.example.uproject.ui.login
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
+import com.example.uproject.common.utils.getErrorMessage
+import com.example.uproject.core.Resource
+import com.example.uproject.domain.repository.AuthRepository
+import kotlinx.coroutines.Dispatchers
+import java.lang.Exception
+
+class AuthViewModel(private val repository: AuthRepository): ViewModel() {
+
+    fun signIn(email: String, password: String) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(repository.signInWithEmailAndPassword(email, password)))
+        }catch (error: Exception){
+            emit(Resource.Failure(getErrorMessage(error)))
+        }
+    }
+
+    fun signUp(
+        username: String,
+        phone: String,
+        email: String,
+        password: String
+    ) = liveData(Dispatchers.IO) {
+        emit(Resource.Loading)
+        try{
+            emit(Resource.Success(repository.signUpWithEmailAndPassword(username, phone, email, password)))
+        }catch (error: Exception){
+            emit(Resource.Failure(getErrorMessage(error)))
+        }
+    }
+
+    fun restorePassword(email: String) = liveData(Dispatchers.IO){
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(repository.restorePassword(email)))
+        }catch (error: Exception){
+            emit(Resource.Failure(getErrorMessage(error)))
+        }
+    }
+
+}

@@ -1,28 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+ <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/home_graph"
-    app:startDestination="@id/navigation_home">
+    app:startDestination="@id/navigation_home" >
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.uproject.ui.fragments.home.HomeFragment"
+        android:name="com.example.uproject.ui.modules.home.HomeFragment"
         android:label="Home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+    </fragment>
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="com.example.uproject.ui.fragments.home.FavoriteFragment"
+        android:name="com.example.uproject.ui.modules.favorite.FavoriteFragment"
         android:label="Favorites"
         tools:layout="@layout/fragment_favorite" />
     <fragment
         android:id="@+id/navigation_bag"
-        android:name="com.example.uproject.ui.fragments.home.BagFragment"
+        android:name="com.example.uproject.ui.modules.bag.BagFragment"
         android:label="fragment_bag"
         tools:layout="@layout/fragment_bag" />
     <fragment
         android:id="@+id/navigation_profile"
-        android:name="com.example.uproject.ui.fragments.home.ProfileFragment"
+        android:name="com.example.uproject.ui.modules.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
+   <activity
+       android:id="@+id/navigation_contact_us"
+       android:name="com.example.uproject.ui.modules.contactus.ContactUsActivity"
+       android:label="activity_contact_us"
+       tools:layout="@layout/activity_contact_us" />
+   <activity
+       android:id="@+id/navigation_about_us"
+       android:name="com.example.uproject.ui.modules.aboutus.AboutUsActivity"
+       android:label="activity_about_us"
+       tools:layout="@layout/activity_about_us" />
 </navigation>

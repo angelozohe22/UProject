@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_White"
-    tools:context=".ui.fragments.main.MainFragment">
+    tools:context=".ui.login.MainFragment">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:layout_width="0dp"

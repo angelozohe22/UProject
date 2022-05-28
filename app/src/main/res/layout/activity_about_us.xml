@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activities.home.aboutus.AboutUsActivity">
+    tools:context=".ui.modules.aboutus.AboutUsActivity">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/appbar_support_aboutUs"
@@ -24,7 +24,7 @@
             android:padding="8dp">
 
             <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/btn_back_contact_us"
+                android:id="@+id/btn_back_about_us"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_marginLeft="4dp"

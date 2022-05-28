@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.fragments.home.BagFragment">
+    tools:context=".ui.modules.bag.BagFragment">
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/title_bag"
@@ -72,7 +72,7 @@
         android:paddingLeft="12dp"
         android:paddingRight="12dp"
         android:layout_marginBottom="20dp"
-        android:text="Pagar"
+        android:text="Reservar"
         android:textColor="@color/color_White"
         android:textAlignment="viewStart"
         android:textAllCaps="false"
