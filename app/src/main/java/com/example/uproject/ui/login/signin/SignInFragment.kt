@@ -1,10 +1,14 @@
 package com.example.uproject.ui.login.signin
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
@@ -16,6 +20,16 @@ import com.example.uproject.common.utils.*
 import com.example.uproject.ui.modules.home.HomeActivity
 import com.example.uproject.ui.login.AuthViewModel
 import com.example.uproject.ui.login.MainActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.firebase.auth.GoogleAuthProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in)
 
@@ -23,6 +37,17 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
     private val binding get() = _binding!!
     
     private lateinit var viewModel: AuthViewModel
+
+    private val googleRegisterResult= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
+        result?.let {
+            if (result.resultCode == Activity.RESULT_OK){
+                val account = GoogleSignIn.getSignedInAccountFromIntent(result.data).result
+                account?.let {
+                    googleAuthForFirebase(it)
+                }
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -50,6 +75,10 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
             requireActivity().onBackPressed()
         }
 
+        binding.btnLoginGoogle.setOnClickListener {
+            setupGoogleAuth()
+        }
+
         binding.lblFromSignInTo.apply{
             val lblQuestion = getString(R.string.lbl_from_logIn_to_question).
 
@@ -64,6 +93,17 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
         textFieldsSignInValidations()
 
         return binding.root
+    }
+
+    private fun setupGoogleAuth(){
+        val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.webclient_id))
+            .requestEmail()
+            .build()
+        val googleSignInClient = GoogleSignIn.getClient(requireContext(), options)
+        googleSignInClient.signInIntent.also {
+            googleRegisterResult.launch(it)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -131,6 +171,31 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
                             requireActivity().finish()
                             clearFields()
                         }else toast("Debe verificar el correo electrónico para poder iniciar sesión")
+                    }
+                    is Resource.Failure -> {
+                        hideProgress()
+                        toast(result.errorMessage)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun googleAuthForFirebase(account: GoogleSignInAccount) {
+        val credentials = GoogleAuthProvider.getCredential(account.idToken, null)
+        viewModel.signInWithGoogle(credentials).observe(
+            viewLifecycleOwner
+        ){
+            it?.let { result ->
+                when (result){
+                    Resource.Loading -> {
+                        showProgress()
+                    }
+                    is Resource.Success -> {
+                        hideProgress()
+                        val intent = Intent(requireActivity(), HomeActivity::class.java)
+                        startActivity(intent)
+                        requireActivity().finish()
                     }
                     is Resource.Failure -> {
                         hideProgress()

@@ -7,6 +7,7 @@ import com.example.uproject.common.FirebaseFirestore
 import com.example.uproject.core.preferences
 import com.example.uproject.data.source.Remote.IAuthDataSource
 import com.example.uproject.data.source.Remote.dto.UserDto
+import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.tasks.await
 
@@ -21,6 +22,11 @@ class RemoteAuthSource(): IAuthDataSource.IRemoteAuthSource {
     ): FirebaseUser? {
         firebaseInstance.signInWithEmailAndPassword(email, password).await()
         return firebaseInstance.currentUser
+    }
+
+    override suspend fun signInWithGoogle(credential: AuthCredential): FirebaseUser? {
+        val result = firebaseInstance.signInWithCredential(credential).await()
+        return result.user
     }
 
     override suspend fun retrieveUserData(userId: String) {

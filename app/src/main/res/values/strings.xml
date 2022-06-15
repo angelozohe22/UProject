@@ -64,4 +64,8 @@
     <string name="tab_title_confiteria">Confitería</string>
     <string name="tab_title_decorativos">Decorativos</string>
     <string name="separate">- - - - - - - - - - - - - - - - - - - - - - --</string>
+    <string name="login_with_google">Inicia con Google</string>
+
+    <!--Google client id-->
+    <string name="webclient_id">494605701384-5bhsq74ga1bumrk850njpimm6tuos1h6.apps.googleusercontent.com</string>
 </resources>

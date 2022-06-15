@@ -109,6 +109,16 @@
         style="@style/ButtonCorner"
         />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_login_google"
+        android:layout_marginTop="25dp"
+        android:text="@string/login_with_google"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_login_signIn"
+        style="@style/ButtonCorner"
+        />
+
     <ProgressBar
         android:id="@+id/progressBar_signIn"
         android:layout_width="wrap_content"
