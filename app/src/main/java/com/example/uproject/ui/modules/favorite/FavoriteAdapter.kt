@@ -14,13 +14,18 @@ import coil.size.Size
 import coil.transform.Transformation
 import com.example.uproject.R
 import com.example.uproject.databinding.ItemProductFavoriteBinding
+import com.example.uproject.domain.model.FavoriteProduct
 import com.example.uproject.domain.model.Product
 import com.example.uproject.ui.modules.home.products.ProductListAdapter
 
 class FavoriteAdapter(
-    private val favoriteList: List<Product>,
-    private val favoriteClickListener: ProductListAdapter.OnProductClickListener
+    private val favoriteList: List<FavoriteProduct>,
+    private val favoriteProductListener: OnFavoriteProductClickListener
 ):RecyclerView.Adapter<FavoriteAdapter.FavoriteViewHolder>() {
+
+    interface OnFavoriteProductClickListener{
+        fun onFavoriteProductClicked(product: FavoriteProduct, colorRGB: Int)
+    }
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
@@ -38,13 +43,13 @@ class FavoriteAdapter(
 
     inner class FavoriteViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         private val binding = ItemProductFavoriteBinding.bind(itemView)
-        fun bindView(product: Product){
+        fun bindView(product: FavoriteProduct){
             binding.apply {
                 var colorRGB = 0
 
                 val imageLoader = ImageLoader.Builder(itemView.context).build()
                 val request = ImageRequest.Builder(itemView.context)
-                    .data(product.image)
+                    .data(product.urlImage)
                     .target(itemImageFavoriteProduct)
                     .transformations(object: Transformation {
                         override fun key(): String = "paletteTransformer"
@@ -77,7 +82,7 @@ class FavoriteAdapter(
                 itemWeightProductFavorite.text = product.weight
 
                 cardContainerFavorite.setOnClickListener {
-                    favoriteClickListener.onProductClicked(product, colorRGB)
+                    favoriteProductListener.onFavoriteProductClicked(product, colorRGB)
                 }
             }
         }

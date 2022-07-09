@@ -51,6 +51,10 @@ class LocalDataSourceImpl(private val dulcekatDataBase: DulcekatDataBase): Local
         return dulcekatDataBase.dulcekatDao().getFavoriteProductList()
     }
 
+    override suspend fun getProductById(productId: Int): ProductEntity {
+        return dulcekatDataBase.dulcekatDao().getProductById(productId)
+    }
+
     override suspend fun getListOrders(): List<OrderEntity> {
         return dulcekatDataBase.dulcekatDao().getListOrders()
     }

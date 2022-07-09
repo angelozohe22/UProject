@@ -1,9 +1,11 @@
 package com.example.uproject.domain.repository
 
+import com.example.uproject.data.source.Remote.dto.FavoriteProductDto
 import com.example.uproject.data.source.local.entity.BagProductEntity
 import com.example.uproject.data.source.local.entity.OrderByProductEntity
 import com.example.uproject.data.source.local.entity.OrderEntity
 import com.example.uproject.domain.model.Category
+import com.example.uproject.domain.model.FavoriteProduct
 import com.example.uproject.domain.model.Product
 
 interface DulcekatRepository{
@@ -18,7 +20,13 @@ interface DulcekatRepository{
     suspend fun updateProductToFavorite(idProduct: Int, isFavorite: Int)
     suspend fun getListSimilarProducts(idProduct:Int, nameKey: String): List<Product>
     suspend fun searchProductsByName(nameKey: String): List<Product>
-    suspend fun getFavoriteProductList(): List<Product>
+    suspend fun getProductById(productId: Int): Product
+
+    //Favorite
+    suspend fun getFavoriteProductList(): List<FavoriteProduct>
+    suspend fun setFavoriteProduct(favoriteProduct: FavoriteProduct)
+    suspend fun removeFavoriteProduct(favoriteProductId: Int)
+
 
     suspend fun getListOrders(): List<OrderEntity>
     suspend fun insertNewOrder(order: OrderEntity)

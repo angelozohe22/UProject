@@ -16,11 +16,12 @@ import com.example.uproject.data.source.local.LocalDataSourceImpl
 import com.example.uproject.databinding.FragmentFavoriteBinding
 import com.example.uproject.domain.model.Product
 import com.example.uproject.data.repository.DulcekatRepositoryImpl
+import com.example.uproject.domain.model.FavoriteProduct
 import com.example.uproject.ui.modules.home.details.DetailsProductActivity
 import com.example.uproject.ui.modules.home.products.ProductListAdapter
 import com.example.uproject.ui.modules.home.HomeViewModelFactory
 
-class FavoriteFragment : Fragment(), ProductListAdapter.OnProductClickListener {
+class FavoriteFragment : Fragment(), FavoriteAdapter.OnFavoriteProductClickListener {
 
     private var _binding: FragmentFavoriteBinding? =null
     private val binding get() = _binding!!
@@ -51,13 +52,16 @@ class FavoriteFragment : Fragment(), ProductListAdapter.OnProductClickListener {
     private fun setupRecycler() {
         binding.rvListFavorite.apply{
             layoutManager   = GridLayoutManager(requireContext(),2)
+            setHasFixedSize(false)
         }
 
         //when is a function, the value of this liveData is dynamic
         viewModel.fetchFavoriteProducts().observe(viewLifecycleOwner, Observer {
             it?.let { result ->
                 when(result){
-                    is Resource.Loading -> {}
+                    is Resource.Loading -> {
+
+                    }
                     is Resource.Success -> {
                         val favoriteList = result.data
 
@@ -76,22 +80,48 @@ class FavoriteFragment : Fragment(), ProductListAdapter.OnProductClickListener {
                         }
 
                     }
-                    is Resource.Failure -> {}
+                    is Resource.Failure -> {
+                        print("EN FAVORITO? ${result.errorMessage}")
+                    }
                 }
             }
         })
 
     }
 
-    override fun onProductClicked(product: Product, colorRGB: Int) {
-        val productBundle = Bundle()
-        productBundle.putParcelable("product", product)
-        val intent = Intent(requireActivity(), DetailsProductActivity::class.java)
-        intent.putExtras(productBundle)
-        intent.putExtra("colorRGB", colorRGB)
-        startActivity(intent)
-    }
+//    override fun onProductClicked(product: FavoriteProduct, colorRGB: Int) {
+//        val productBundle = Bundle()
+//        productBundle.putParcelable("product", product)
+//        val intent = Intent(requireActivity(), DetailsProductActivity::class.java)
+//        intent.putExtras(productBundle)
+//        intent.putExtra("colorRGB", colorRGB)
+//        startActivity(intent)
+//    }
 
+    override fun onFavoriteProductClicked(product: FavoriteProduct, colorRGB: Int) {
+        viewModel.fetchProductById(product.productId).observe(viewLifecycleOwner, Observer {
+            it?.let { result ->
+                when (result) {
+                    is Resource.Loading -> {
+
+                    }
+                    is Resource.Success -> {
+                        val product = result.data
+                        val productBundle = Bundle()
+                        productBundle.putParcelable("product", product)
+                        val intent = Intent(requireActivity(), DetailsProductActivity::class.java)
+                        intent.putExtras(productBundle)
+                        intent.putExtra("colorRGB", colorRGB)
+                        startActivity(intent)
+                    }
+                    is Resource.Failure -> {
+
+                    }
+                }
+            }
+        })
+
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

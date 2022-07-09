@@ -33,11 +33,12 @@
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/activity_about_us.xml" value="0.5364583333333334" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/activity_category.xml" value="0.5364583333333334" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/activity_contact_us.xml" value="0.4462962962962963" />
-        <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/activity_details_product.xml" value="0.33" />
+        <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/activity_details_product.xml" value="0.25" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/activity_home.xml" value="0.25" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/activity_products.xml" value="0.5364583333333334" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/activity_search.xml" value="0.5364583333333334" />
+        <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/fragment_favorite.xml" value="0.5364583333333334" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/fragment_main.xml" value="0.5364583333333334" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/fragment_profile.xml" value="0.5364583333333334" />
@@ -46,6 +47,7 @@
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/fragment_sign_up.xml" value="0.5364583333333334" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/item_category.xml" value="0.67" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/item_product.xml" value="0.5364583333333334" />
+        <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/item_product_favorite.xml" value="0.5364583333333334" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/nav_header.xml" value="0.5364583333333334" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/placeholder_item_category.xml" value="1.0" />
         <entry key="..\:/Users/Angelo/Documents/Proyecto-Dulcekat/UProject/app/src/main/res/layout/placeholder_item_product.xml" value="0.75" />

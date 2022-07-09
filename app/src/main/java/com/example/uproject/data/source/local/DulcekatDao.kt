@@ -32,6 +32,9 @@ interface DulcekatDao {
     @Query("Select * from tb_product where name like :nameKey || '%' or mark like :nameKey || '%' ")
     suspend fun searchProductsByName(nameKey: String): List<ProductEntity>
 
+    @Query("Select * from tb_product where idproduct like :productId")
+    suspend fun getProductById(productId: Int): ProductEntity
+
     @Query("Select * from tb_product where isfavorite = 1")
     suspend fun getFavoriteProductList(): List<ProductEntity>
 

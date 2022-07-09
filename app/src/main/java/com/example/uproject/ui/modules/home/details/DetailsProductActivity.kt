@@ -28,6 +28,7 @@ import com.example.uproject.data.source.local.LocalDataSourceImpl
 import com.example.uproject.databinding.ActivityDetailsProductBinding
 import com.example.uproject.domain.model.Product
 import com.example.uproject.data.repository.DulcekatRepositoryImpl
+import com.example.uproject.domain.model.FavoriteProduct
 import com.example.uproject.ui.modules.home.products.ProductListAdapter
 import com.example.uproject.ui.modules.home.HomeViewModelFactory
 import java.text.SimpleDateFormat
@@ -37,7 +38,7 @@ import kotlin.math.roundToInt
 class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProductClickListener {
 
     private lateinit var binding: ActivityDetailsProductBinding
-    private lateinit var productEntity: Product
+    private lateinit var productSelected: Product
     private val detailsProductAdapter by lazy { ProductListAdapter(this, this) }
 
     private var colorRGB = 0
@@ -58,12 +59,12 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
         setContentView(binding.root)
 
         if(intent.extras != null){
-            productEntity  = intent.getParcelableExtra<Product>("product") as Product
+            productSelected  = intent.getParcelableExtra<Product>("product") as Product
             colorRGB       = intent.getIntExtra("colorRGB", 0)
         }
 
-        val nameKey = productEntity.name.substring(0,4)
-        val idProduct = productEntity.idproduct
+        val nameKey = productSelected.name.substring(0,4)
+        val idProduct = productSelected.idproduct
         viewModel.getListSimilarProducts(idProduct, nameKey)
 
         binding.btnBackDetailsProduct.setOnClickListener {
@@ -90,19 +91,19 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
         val tvDiscountPriceDetailsProduct   = binding.tvDiscountPriceDetailsProduct
 
         cardDetailsProductSupport.setCardBackgroundColor(colorRGB)
-        imgDetailsProduct.load(productEntity.image)
-        tvNameDetailsProduct.text           = productEntity.name
-        tvMarkDetailsProduct.text           = productEntity.mark
-        tvWeightDetailsProduct.text         = productEntity.weight
-        tvDescriptionDetailsProduct.text    = productEntity.description
+        imgDetailsProduct.load(productSelected.image)
+        tvNameDetailsProduct.text           = productSelected.name
+        tvMarkDetailsProduct.text           = productSelected.mark
+        tvWeightDetailsProduct.text         = productSelected.weight
+        tvDescriptionDetailsProduct.text    = productSelected.description
 
-        if(productEntity.offer != 0){
-            val offer = productEntity.offer
-            val price = productEntity.price
+        if(productSelected.offer != 0){
+            val offer = productSelected.offer
+            val price = productSelected.price
             val discountPrice   = price - price*offer/100
             val finalPrice      = (discountPrice * 100.0).roundToInt() / 100.0
 
-            tvDiscountDetailsProduct.text           = productEntity.offer.toString().plus("% DESC")
+            tvDiscountDetailsProduct.text           = productSelected.offer.toString().plus("% DESC")
             tvRealPriceDetailsProduct.text          = "S/ $price"
             tvRealPriceDetailsProduct.paintFlags    = tvRealPriceDetailsProduct.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             tvDiscountPriceDetailsProduct.text      = "S/ $finalPrice"
@@ -110,7 +111,7 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
             viewSupportDiscountDetails.visibility   = View.GONE
             tvDiscountDetailsProduct.visibility     = View.GONE
             tvRealPriceDetailsProduct.visibility    = View.GONE
-            tvDiscountPriceDetailsProduct.text      = "S/ ${productEntity.price}"
+            tvDiscountPriceDetailsProduct.text      = "S/ ${productSelected.price}"
         }
 
         setStatusBarColor(this, colorRGB)
@@ -118,7 +119,7 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
 
     private fun setupFavoriteProduct(){
         val btnFavoriteDetailsProduct = binding.btnFavoriteDetailsProduct
-        var isProductFavorite = productEntity.isfavorite == 1
+        var isProductFavorite = productSelected.isfavorite == 1
 
         if(isProductFavorite){
             btnFavoriteDetailsProduct.setImageDrawable(
@@ -138,16 +139,52 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
 
         btnFavoriteDetailsProduct.apply {
             setOnClickListener {
+                val favoriteProduct = FavoriteProduct(
+                    productSelected.idproduct,
+                    productSelected.name,
+                    productSelected.mark,
+                    productSelected.weight,
+                    productSelected.image
+                )
+
                 if (isProductFavorite) {
                     playAnimations(this, R.drawable.avd_animation_heart_2)
-                    viewModel.updateProductToFavorite(productEntity.idproduct, 0)
-                    Toast.makeText(applicationContext, "Eliminado de favoritos", Toast.LENGTH_SHORT)
-                        .show()
+                    viewModel.removeProductFromFavorite(favoriteProduct.productId).observe(this@DetailsProductActivity, Observer {
+                        it?.let { result ->
+                            when(result){
+                                is Resource.Loading -> {
+
+                                }
+                                is Resource.Success -> {
+
+                                    Toast.makeText(applicationContext, "Eliminado de favoritos", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                                is Resource.Failure -> {
+                                    println("ERROR AL ELIMINAR:: ${result.errorMessage}")
+                                }
+                            }
+                        }
+                    })
                 } else {
                     playAnimations(this, R.drawable.avd_animation_heart_1)
-                    viewModel.updateProductToFavorite(productEntity.idproduct, 1)
-                    Toast.makeText(applicationContext, "Agregado a favoritos", Toast.LENGTH_SHORT)
-                        .show()
+                    viewModel.addProductToFavorite(favoriteProduct).observe(this@DetailsProductActivity, Observer {
+                        it?.let { result ->
+                            when(result){
+                                is Resource.Loading -> {
+
+                                }
+                                is Resource.Success -> {
+
+                                    Toast.makeText(applicationContext, "Agregado a favoritos", Toast.LENGTH_SHORT)
+                                        .show()
+                                }
+                                is Resource.Failure -> {
+                                    println("ERROR AL ELIMINAR:: ${result.errorMessage}")
+                                }
+                            }
+                        }
+                    })
                 }
                 isProductFavorite = !isProductFavorite
             }
@@ -179,7 +216,7 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
             setBackgroundResource(R.drawable.btn_corner_quantity_disable)
         }
 
-        if(productEntity.quantity > 0){
+        if(productSelected.quantity > 0){
 
             btnIncreaseQuantity.setOnClickListener {
                 viewModel.increaseQuantity()
@@ -192,7 +229,7 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
             viewModel.count.observe(this, Observer { count->
                 tvQuantityProduct.text = (if(count<10) "0" else "").plus(count)
                 btnIncreaseQuantity.apply {
-                    isEnabled = count != productEntity.quantity
+                    isEnabled = count != productSelected.quantity
                     if(isEnabled) setBackgroundResource(R.drawable.btn_corner_quantity)
                     else setBackgroundResource(R.drawable.btn_corner_quantity_disable)
                 }
@@ -219,8 +256,8 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
     }
 
     private fun setupRecycler(){
-        val nameKey = productEntity.name.substring(0,4)
-        val idProduct = productEntity.idproduct
+        val nameKey = productSelected.name.substring(0,4)
+        val idProduct = productSelected.idproduct
 
         binding.rvOtherProducts.apply {
             layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL,false)
@@ -246,11 +283,11 @@ class DetailsProductActivity : AppCompatActivity(), ProductListAdapter.OnProduct
     private fun setupAddToBag(){
         val btnAddBagProduct  = binding.btnAddBagProduct
 
-        val idProduct = productEntity.idproduct
-        val price = if(productEntity.offer != 0){
-            val discountPrice   = productEntity.price - productEntity.price*productEntity.offer/100
+        val idProduct = productSelected.idproduct
+        val price = if(productSelected.offer != 0){
+            val discountPrice   = productSelected.price - productSelected.price*productSelected.offer/100
             (discountPrice * 100.0).roundToInt() / 100.0
-        }else productEntity.price
+        }else productSelected.price
 
         val sdf = SimpleDateFormat("yyyy.MM.dd")
         val currentDate = sdf.format(Date())

@@ -1,6 +1,8 @@
 package com.example.uproject.data.repository
 
+import com.example.uproject.data.source.Remote.dto.FavoriteProductDto
 import com.example.uproject.data.source.Remote.home.RemoteFirestoreDataSource
+import com.example.uproject.data.source.Remote.response.toFavoriteProduct
 import com.example.uproject.data.source.local.LocalDataSource
 import com.example.uproject.data.source.local.entity.BagProductEntity
 import com.example.uproject.data.source.local.entity.OrderByProductEntity
@@ -46,8 +48,12 @@ class DulcekatRepositoryImpl(
         return localDataSource.searchProductsByName(nameKey).map { it.toProduct() }
     }
 
-    override suspend fun getFavoriteProductList(): List<Product> {
-        return localDataSource.getFavoriteProductList().map { it.toProduct() }
+    override suspend fun getFavoriteProductList(): List<FavoriteProduct> {
+        return remoteFirestoreDataSource.getFavoriteProductList().map { it.toFavoriteProduct() }
+    }
+
+    override suspend fun getProductById(productId: Int): Product {
+        return localDataSource.getProductById(productId).toProduct()
     }
 
     override suspend fun getListOrders(): List<OrderEntity> {
@@ -90,5 +96,13 @@ class DulcekatRepositoryImpl(
         }
         localDataSource.setProductList(productListMapper)
         return productList.mapIndexed { idx, product -> product.toProduct(idx) }
+    }
+
+    override suspend fun setFavoriteProduct(favoriteProduct: FavoriteProduct) {
+        remoteFirestoreDataSource.setFavoriteProduct(favoriteProduct.toFavoriteProductDto())
+    }
+
+    override suspend fun removeFavoriteProduct(favoriteProductId: Int) {
+        remoteFirestoreDataSource.removeFavoriteProduct(favoriteProductId)
     }
 }

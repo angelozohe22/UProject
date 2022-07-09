@@ -16,6 +16,7 @@ interface LocalDataSource {
     suspend fun getListSimilarProducts(idProduct: Int, nameKey: String): List<ProductEntity>
     suspend fun searchProductsByName(nameKey: String): List<ProductEntity>
     suspend fun getFavoriteProductList(): List<ProductEntity>
+    suspend fun getProductById(productId: Int): ProductEntity
 
     //Order
     suspend fun getListOrders(): List<OrderEntity>

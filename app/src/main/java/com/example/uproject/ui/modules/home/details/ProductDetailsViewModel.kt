@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.example.uproject.core.Resource
 import com.example.uproject.data.source.local.entity.OrderByProductEntity
 import com.example.uproject.data.source.local.entity.OrderEntity
+import com.example.uproject.domain.model.FavoriteProduct
 import com.example.uproject.domain.repository.DulcekatRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,10 +23,21 @@ class ProductDetailsViewModel(
     private val _orders = MutableLiveData<List<OrderEntity>>()
     val orders: LiveData<List<OrderEntity>> get() = _orders
 
-    fun updateProductToFavorite(idproduct: Int, isfavorite: Int){
-        viewModelScope.launch {
-            Log.e("update", "paso por aqui")
-            dulcekatRepository.updateProductToFavorite(idproduct, isfavorite)
+    fun addProductToFavorite(favoriteProduct: FavoriteProduct)= liveData(Dispatchers.IO) {
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(dulcekatRepository.setFavoriteProduct(favoriteProduct)))
+        }catch (e: Exception){
+            emit(Resource.Failure("Ha ocurrido un error añadir::: ${e.localizedMessage}"))
+        }
+    }
+
+    fun removeProductFromFavorite(productId: Int)= liveData(Dispatchers.IO) {
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(dulcekatRepository.removeFavoriteProduct(productId)))
+        }catch (e: Exception){
+            emit(Resource.Failure("Ha ocurrido un error eliminar::: ${e.localizedMessage}"))
         }
     }
 
