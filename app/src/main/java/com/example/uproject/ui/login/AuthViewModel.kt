@@ -29,6 +29,15 @@ class AuthViewModel(private val repository: AuthRepository): ViewModel() {
         }
     }
 
+    fun signInWithFacebook(credential: AuthCredential)= liveData(Dispatchers.IO) {
+        emit(Resource.Loading)
+        try {
+            emit(Resource.Success(repository.signInWithFacebook(credential)))
+        }catch (error: Exception){
+            emit(Resource.Failure(error.message.orEmpty()))
+        }
+    }
+
     fun signUp(
         username: String,
         phone: String,

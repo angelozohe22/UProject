@@ -1,4 +1,4 @@
-package com.example.uproject.ui.login
+package com.example.uproject.ui.login.welcome
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,7 @@ import com.example.uproject.databinding.FragmentMainBinding
 import com.example.uproject.common.utils.setNavigationBarColor
 import com.example.uproject.common.utils.setStatusBarColor
 
-class MainFragment : Fragment() { //BaseFragment<FragmentMainBinding>(R.layout.fragment_main)
+class WelcomeFragment : Fragment() { //BaseFragment<FragmentMainBinding>(R.layout.fragment_main)
 
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!

@@ -68,4 +68,11 @@
 
     <!--Google client id-->
     <string name="webclient_id">494605701384-5bhsq74ga1bumrk850njpimm6tuos1h6.apps.googleusercontent.com</string>
+
+    <!-- Facebook client -->
+    <string name="facebook_app_id">1384109932413104</string>
+    <string name="fb_login_protocol_scheme">fb1384109932413104</string>
+    <string name="facebook_client_token">72216ea5e09afa2ff029f8c93a7ee7af</string>
+
+
 </resources>

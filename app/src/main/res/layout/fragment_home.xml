@@ -144,41 +144,41 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/title_category" />
 
-<!--        <androidx.appcompat.widget.AppCompatTextView-->
-<!--            android:id="@+id/title_offers"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginLeft="16dp"-->
-<!--            android:layout_marginTop="16dp"-->
-<!--            android:text="@string/title_offers"-->
-<!--            android:textSize="20sp"-->
-<!--            android:fontFamily="@font/googlesans_bold"-->
-<!--            app:layout_constraintLeft_toLeftOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/rv_list_category"/>-->
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/title_offers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/title_offers"
+            android:textSize="20sp"
+            android:fontFamily="@font/googlesans_bold"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_list_category"/>
 
-<!--        <androidx.viewpager2.widget.ViewPager2-->
-<!--            android:id="@+id/banner_offers"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="200dp"-->
-<!--            android:layout_marginTop="8dp"-->
-<!--            android:layout_marginRight="16dp"-->
-<!--            android:paddingLeft="30dp"-->
-<!--            android:paddingRight="30dp"-->
-<!--            app:layout_constraintLeft_toLeftOf="@id/title_offers"-->
-<!--            app:layout_constraintRight_toRightOf="parent"-->
-<!--            app:layout_constraintTop_toBottomOf="@id/title_offers" />-->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/banner_offers"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            app:layout_constraintLeft_toLeftOf="@id/title_offers"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_offers" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_some_products"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
-            android:layout_marginTop="36dp"
+            android:layout_marginTop="16dp"
             android:text="@string/title_some_products"
             android:textSize="20sp"
             android:fontFamily="@font/googlesans_bold"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rv_list_category"/>
+            app:layout_constraintTop_toBottomOf="@id/banner_offers"/>
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/title_see_all"

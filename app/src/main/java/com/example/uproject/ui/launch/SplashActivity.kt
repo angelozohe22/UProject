@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.uproject.common.FirebaseAuth
 import com.example.uproject.ui.modules.home.HomeActivity
-import com.example.uproject.ui.login.MainActivity
+import com.example.uproject.ui.login.welcome.WelcomeActivity
 
 class SplashActivity : AppCompatActivity() {
 
@@ -17,7 +17,7 @@ class SplashActivity : AppCompatActivity() {
     private fun goTo(){
         val auth = FirebaseAuth.getInstance()
         if(auth.currentUser == null){
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, WelcomeActivity::class.java)
             startActivity(intent)
             finish()
         }else{

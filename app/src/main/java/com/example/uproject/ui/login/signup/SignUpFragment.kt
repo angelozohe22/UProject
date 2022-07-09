@@ -13,7 +13,7 @@ import com.example.uproject.core.Resource
 import com.example.uproject.databinding.FragmentSignUpBinding
 import com.example.uproject.common.utils.*
 import com.example.uproject.ui.login.AuthViewModel
-import com.example.uproject.ui.login.MainActivity
+import com.example.uproject.ui.login.welcome.WelcomeActivity
 
 class SignUpFragment : Fragment() { //BaseFragment<FragmentSignUpBinding>(R.layout.fragment_sign_up)
 
@@ -29,7 +29,7 @@ class SignUpFragment : Fragment() { //BaseFragment<FragmentSignUpBinding>(R.layo
     ): View? {
         _binding = FragmentSignUpBinding.inflate(layoutInflater, container, false)
 
-        viewModel = (activity as MainActivity).viewModel
+        viewModel = (activity as WelcomeActivity).viewModel
         setStatusBarColor(requireActivity())
         setNavigationBarColor(requireActivity())
 

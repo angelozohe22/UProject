@@ -1,14 +1,15 @@
-package com.example.uproject.ui.login
+package com.example.uproject.ui.login.welcome
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import com.example.uproject.databinding.ActivityMainBinding
 import com.example.uproject.data.repository.AuthRepositoryImpl
 import com.example.uproject.data.source.Remote.auth.RemoteAuthSource
+import com.example.uproject.ui.login.AuthViewModel
+import com.example.uproject.ui.login.AuthViewModelFactory
 
-class MainActivity : AppCompatActivity() {
+class WelcomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 

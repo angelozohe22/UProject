@@ -11,7 +11,7 @@ import com.example.uproject.databinding.DialogForgotPasswordBinding
 import com.example.uproject.common.utils.*
 import com.example.uproject.core.Resource
 import com.example.uproject.ui.login.AuthViewModel
-import com.example.uproject.ui.login.MainActivity
+import com.example.uproject.ui.login.welcome.WelcomeActivity
 
 class RecoverPasswordFragment: DialogFragment() {
 
@@ -27,7 +27,7 @@ class RecoverPasswordFragment: DialogFragment() {
     ): View? {
         _binding = DialogForgotPasswordBinding.inflate(inflater, container, false)
 
-        viewModel = (activity as MainActivity).viewModel
+        viewModel = (activity as WelcomeActivity).viewModel
 
         binding.btnRestorePassword.apply{
             isEnabled = false

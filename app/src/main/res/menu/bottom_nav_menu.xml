@@ -6,10 +6,10 @@
         android:icon="@drawable/home_icon"
         android:title="@string/menuHome"/>
 
-<!--    <item-->
-<!--        android:id="@+id/navigation_favorite"-->
-<!--        android:icon="@drawable/wishlist_icon"-->
-<!--        android:title="@string/default_favorites_menu"/>-->
+    <item
+        android:id="@+id/navigation_favorite"
+        android:icon="@drawable/wishlist_icon"
+        android:title="@string/default_favorites_menu"/>
 
     <item
         android:id="@+id/navigation_bag"

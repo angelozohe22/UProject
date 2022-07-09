@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
@@ -56,11 +57,11 @@ class HomeFragment : Fragment(),
         _binding = FragmentHomeBinding.inflate(layoutInflater, container, false)
 
         //Ofertas
-//        slideAdapter = SlideAdapter(binding.bannerOffers)
+        slideAdapter = SlideAdapter(binding.bannerOffers)
 
         setupCategoryRecyclerView()
         setupProductRecyclerView()
-//        setupViewPager2()
+        setupViewPager2()
 
         //Buscador
 //        binding.searchViewContainer.setOnClickListener {
@@ -145,6 +146,15 @@ class HomeFragment : Fragment(),
 
     //ofertas
     private fun setupViewPager2(){
+//        //Runnable
+//        val sliderRunnable: Runnable = Runnable{
+//            run {
+//                binding.bannerOffers.apply {
+//                    currentItem += 1
+//                }
+//            }
+//        }
+
 //        val handler = Handler(Looper.getMainLooper())
         val listSlideImage = listOf(
             SlideItem("https://i.imgur.com/th1eMcY.png"),
@@ -162,33 +172,25 @@ class HomeFragment : Fragment(),
         }
 
         //Ofertas
-//        binding.bannerOffers.apply {
-//            adapter = slideAdapter
-//            clipToPadding = false
-//            clipChildren = false
-//            offscreenPageLimit = 3 //view preview images as a book
-//            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-//            setPageTransformer(compositePageTransformer)
-////            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
-////                override fun onPageSelected(position: Int) {
-////                    super.onPageSelected(position)
-////                    handler.apply {
-////                        removeCallbacks(sliderRunnable)
-////                        postDelayed(sliderRunnable, 3000)
-////                    }
-////                }
-////            })
-//        }
+        binding.bannerOffers.apply {
+            adapter = slideAdapter
+            clipToPadding = false
+            clipChildren = false
+            offscreenPageLimit = 3 //view preview images as a book
+            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+            setPageTransformer(compositePageTransformer)
+            registerOnPageChangeCallback(object: ViewPager2.OnPageChangeCallback(){
+//                override fun onPageSelected(position: Int) {
+//                    super.onPageSelected(position)
+//                    handler.apply {
+//                        removeCallbacks(sliderRunnable)
+//                        postDelayed(sliderRunnable, 3000)
+//                    }
+//                }
+            })
+        }
         slideAdapter.setData(listSlideImage)
     }
-
-//    private val sliderRunnable: Runnable = Runnable{
-//        run {
-//            binding.bannerOffers.apply {
-//                currentItem += 1
-//            }
-//        }
-//    }
 
     private fun showProgressCategory() {
         binding.progressCategory.startShimmer()

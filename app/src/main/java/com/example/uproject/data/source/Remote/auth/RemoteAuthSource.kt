@@ -29,6 +29,11 @@ class RemoteAuthSource(): IAuthDataSource.IRemoteAuthSource {
         return result.user
     }
 
+    override suspend fun signInWithFacebook(credential: AuthCredential): FirebaseUser? {
+        val result = firebaseInstance.signInWithCredential(credential).await()
+        return result.user
+    }
+
     override suspend fun retrieveUserData(userId: String) {
         firebaseStoreReference.collection(Constants.TB_USERS)
             .document(userId).get().addOnCompleteListener { task ->

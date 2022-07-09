@@ -23,6 +23,13 @@ class AuthRepositoryImpl(
         return true
     }
 
+    override suspend fun signInWithFacebook(credentials: AuthCredential): Boolean {
+        remoteAuthSource.signInWithFacebook(credentials)?.let { user ->
+            remoteAuthSource.createNewUserIntoFirebase(UserDto(user.uid, user.displayName.orEmpty(), user.phoneNumber.orEmpty(), user.email.orEmpty()))
+        }
+        return true
+    }
+
     override suspend fun signUpWithEmailAndPassword(
         username: String,
         phone: String,

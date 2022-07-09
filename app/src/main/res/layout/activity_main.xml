@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.login.MainActivity">
+    tools:context=".ui.login.welcome.WelcomeActivity">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/nav_main_host_fragment"
@@ -17,5 +17,27 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:defaultNavHost="true"
         app:navGraph="@navigation/main_graph" />
+
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/cortina_progress"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:background="#8C252525"-->
+<!--        android:gravity="center"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        >-->
+
+<!--        <View-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:background="@drawable/card_corner_progress"-->
+<!--            />-->
+
+
+<!--    </RelativeLayout>-->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,29 +7,31 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
 import com.example.uproject.R
+import com.example.uproject.common.FacebookLoginManager
+import com.example.uproject.common.utils.*
 import com.example.uproject.core.Resource
 import com.example.uproject.databinding.FragmentSignInBinding
-import com.example.uproject.common.utils.*
-import com.example.uproject.ui.modules.home.HomeActivity
 import com.example.uproject.ui.login.AuthViewModel
-import com.example.uproject.ui.login.MainActivity
-import com.google.android.gms.auth.api.signin.GoogleSignIn
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.example.uproject.ui.login.welcome.WelcomeActivity
+import com.example.uproject.ui.modules.home.HomeActivity
+import com.facebook.AccessToken
+import com.facebook.CallbackManager
+import com.facebook.FacebookCallback
+import com.facebook.FacebookException
+import com.facebook.login.LoginBehavior
+import com.facebook.login.LoginResult
+import com.google.android.gms.auth.api.signin.*
+import com.google.android.gms.common.api.Api.ApiOptions.HasOptions
+import com.google.android.gms.common.api.GoogleApi
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.GoogleAuthProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import kotlinx.coroutines.withContext
-import java.lang.Exception
 
 class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layout.fragment_sign_in)
 
@@ -38,6 +40,7 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
     
     private lateinit var viewModel: AuthViewModel
 
+    //For google login
     private val googleRegisterResult= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){ result ->
         result?.let {
             if (result.resultCode == Activity.RESULT_OK){
@@ -49,6 +52,9 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
         }
     }
 
+    //For facebook Login
+    var callbackManager = CallbackManager.Factory.create()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -56,9 +62,11 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
     ): View? {
         _binding = FragmentSignInBinding.inflate(layoutInflater, container, false)
 
-        viewModel = (activity as MainActivity).viewModel
+        viewModel = (activity as WelcomeActivity).viewModel
         setStatusBarColor(requireActivity())
         setNavigationBarColor(requireActivity())
+
+        registerCallbackForFacebookLogin()
 
         binding.btnLoginSignIn.apply{
             isEnabled  = false
@@ -79,6 +87,10 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
             setupGoogleAuth()
         }
 
+        binding.btnLoginFacebook.setOnClickListener {
+            setupFacebookAuth()
+        }
+
         binding.lblFromSignInTo.apply{
             val lblQuestion = getString(R.string.lbl_from_logIn_to_question).
 
@@ -95,12 +107,44 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
         return binding.root
     }
 
+    private fun setupFacebookAuth() {
+        FacebookLoginManager.getInstance().apply {
+            logInWithReadPermissions(this@SignInFragment, listOf("public_profile","email"))
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //For facebook login
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+    }
+
+    private fun registerCallbackForFacebookLogin(){
+        FacebookLoginManager.getInstance().registerCallback(callbackManager, object :
+            FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                facebookAuthForFirebase(loginResult.accessToken)
+            }
+
+            override fun onCancel() {
+                Log.e("FB_TAG", "-->> holaaaaaaaa entro cancel")
+            }
+
+            override fun onError(error: FacebookException) {
+                Log.e("FB_TAG", "-->> holaaaaaaaa entro error: ${error.localizedMessage}")
+            }
+        })
+    }
+
     private fun setupGoogleAuth(){
         val options = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.webclient_id))
             .requestEmail()
             .build()
         val googleSignInClient = GoogleSignIn.getClient(requireContext(), options)
+        googleSignInClient.revokeAccess()
+        googleSignInClient.signOut()
         googleSignInClient.signInIntent.also {
             googleRegisterResult.launch(it)
         }
@@ -146,6 +190,7 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
                 else setBackgroundResource(R.drawable.btn_corner_dissable)
 
                 setOnClickListener {
+                    hideKeyboard()
                     setupSignInObserver(email, password)
                 }
             }
@@ -189,22 +234,48 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
             it?.let { result ->
                 when (result){
                     Resource.Loading -> {
-                        showProgress()
+//                        showProgress()
                     }
                     is Resource.Success -> {
-                        hideProgress()
+//                        hideProgress()
                         val intent = Intent(requireActivity(), HomeActivity::class.java)
                         startActivity(intent)
                         requireActivity().finish()
                     }
                     is Resource.Failure -> {
-                        hideProgress()
+//                        hideProgress()
                         toast(result.errorMessage)
                     }
                 }
             }
         }
     }
+
+    private fun facebookAuthForFirebase(accessToken: AccessToken) {
+        val credential = FacebookAuthProvider.getCredential(accessToken.token)
+        viewModel.signInWithFacebook(credential).observe(
+            viewLifecycleOwner
+        ){
+            it?.let { result ->
+                when (result){
+                    Resource.Loading -> {
+//                        showProgress()
+                    }
+                    is Resource.Success -> {
+//                        hideProgress()
+                        val intent = Intent(requireActivity(), HomeActivity::class.java)
+                        startActivity(intent)
+                        requireActivity().finish()
+                    }
+                    is Resource.Failure -> {
+//                        hideProgress()
+                        toast(result.errorMessage)
+                    }
+                }
+            }
+        }
+    }
+
 
     private fun navigateFromSignInToSignUp(){
         clearFields()
@@ -220,7 +291,7 @@ class SignInFragment : Fragment() { //BaseFragment<FragmentSignInBinding>(R.layo
 
     private fun showProgress(){
         binding.apply{
-            btnLoginSignIn.visibility = View.GONE
+            btnLoginSignIn.visibility = View.INVISIBLE
             progressBarSignIn.visibility = View.VISIBLE
         }
     }
