@@ -49,20 +49,19 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.OnFavoriteProductClickListe
 
     }
 
-    private fun setupRecycler() {
-        binding.rvListFavorite.apply{
-            layoutManager   = GridLayoutManager(requireContext(),2)
-            setHasFixedSize(false)
-        }
+
+    override fun onResume() {
+        super.onResume()
 
         //when is a function, the value of this liveData is dynamic
         viewModel.fetchFavoriteProducts().observe(viewLifecycleOwner, Observer {
             it?.let { result ->
                 when(result){
                     is Resource.Loading -> {
-
+                        binding.rvListFavorite.visibility = View.GONE
                     }
                     is Resource.Success -> {
+                        binding.rvListFavorite.visibility = View.VISIBLE
                         val favoriteList = result.data
 
                         if(favoriteList.isNotEmpty()){
@@ -86,6 +85,17 @@ class FavoriteFragment : Fragment(), FavoriteAdapter.OnFavoriteProductClickListe
                 }
             }
         })
+
+
+    }
+
+    private fun setupRecycler() {
+        binding.rvListFavorite.apply{
+            layoutManager   = GridLayoutManager(requireContext(),2)
+            setHasFixedSize(false)
+        }
+
+
 
     }
 

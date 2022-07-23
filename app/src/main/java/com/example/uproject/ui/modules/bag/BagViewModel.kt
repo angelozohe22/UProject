@@ -17,7 +17,7 @@ class BagViewModel(
         try {
             emit(Resource.Success(dulcekatRepository.getOrderByProductList()))
         }catch (e: Exception){
-            emit(Resource.Failure("e"))
+            emit(Resource.Failure("errrrrrrrrrrrrr ${e.localizedMessage}"))
         }
     }
 

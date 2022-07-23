@@ -100,9 +100,25 @@ class DulcekatRepositoryImpl(
 
     override suspend fun setFavoriteProduct(favoriteProduct: FavoriteProduct) {
         remoteFirestoreDataSource.setFavoriteProduct(favoriteProduct.toFavoriteProductDto())
+        println("//// colocando en favoritos el item:: ${favoriteProduct.productId}")
+        try {
+            localDataSource.updateProductToFavorite(favoriteProduct.productId, 1)
+        }catch (t: Throwable){
+            println("//// No pudimos anadir a favorito")
+        }
+
+
     }
 
     override suspend fun removeFavoriteProduct(favoriteProductId: Int) {
         remoteFirestoreDataSource.removeFavoriteProduct(favoriteProductId)
+        println("//// removiendo en favoritos el item:: $favoriteProductId")
+        try {
+            localDataSource.updateProductToFavorite(favoriteProductId, 0)
+        }catch (t: Throwable){
+            println("//// No pudimos elimnar a favorito")
+        }
+
+
     }
 }

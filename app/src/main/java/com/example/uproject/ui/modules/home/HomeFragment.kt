@@ -28,6 +28,7 @@ import com.example.uproject.ui.modules.home.products.ProductsActivity
 import com.example.uproject.ui.modules.home.category.CategoryListAdapter
 import com.example.uproject.ui.modules.home.products.ProductListAdapter
 import com.example.uproject.ui.modules.home.offer.SlideAdapter
+import com.example.uproject.ui.modules.home.search.SearchActivity
 import kotlin.math.abs
 
 class HomeFragment : Fragment(),
@@ -64,10 +65,10 @@ class HomeFragment : Fragment(),
         setupViewPager2()
 
         //Buscador
-//        binding.searchViewContainer.setOnClickListener {
-//            val intent = Intent(requireActivity(), SearchActivity::class.java)
-//            startActivity(intent)
-//        }
+        binding.searchViewContainer.setOnClickListener {
+            val intent = Intent(requireActivity(), SearchActivity::class.java)
+            startActivity(intent)
+        }
 
         binding.titleSeeAll.setOnClickListener {
             val intent = Intent(requireActivity(), ProductsActivity::class.java)

@@ -66,6 +66,7 @@ class BagFragment : androidx.fragment.app.Fragment(), BagAdapter.OnProductBagCli
                     is Resource.Loading -> {
                     }
                     is Resource.Success -> {
+                        println("ALOHAAAAAAAAA EXITO:: ${result.data}")
                         currentBagList = result.data.toMutableList()
                         val bagList = result.data
                         if (bagList.isNotEmpty()) {
@@ -95,6 +96,7 @@ class BagFragment : androidx.fragment.app.Fragment(), BagAdapter.OnProductBagCli
                         }
                     }
                     is Resource.Failure -> {
+                        println("ALOHAAAAAAAAA fracaso: ${result.errorMessage}")
                     }
                 }
             }
